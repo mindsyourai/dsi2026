@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>From Model Disagreement to Disclosure Intelligence — ADAM · DSI 2026</title>
-<meta name="description" content="Presentation deck: From Model Disagreement to Disclosure Intelligence (ADAM, DSI 2026). 40 cards, presenter-ready.">
+<meta name="description" content="Presentation deck: From Model Disagreement to Disclosure Intelligence (ADAM, DSI 2026). 33 cards, presenter-ready.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -155,7 +155,7 @@ footer.controls .btn.small{padding:11px 14px}
   <span class="brand">ADAM · DSI 2026</span>
   <span class="seclabel" id="seclabel">Title</span>
   <div class="progress" aria-hidden="true"><i id="progbar"></i></div>
-  <span class="counter" id="counter">Card 1 of 40</span>
+  <span class="counter" id="counter">Card 1 of 33</span>
 </header>
 
 <main class="stage" id="stage">
@@ -169,26 +169,13 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="subtitle">ADAM — an agentic decision support system for financial narratives.</p>
   <div class="rule"></div>
   <p class="lede">When two credible methods disagree about the same paragraph, don't average the disagreement away. Diagnose it.</p>
-  <p>Kazim Topuz (presenter) · Jessica Bedson · Tally Ferguson · Thomas Kim</p>
-  <div class="tagrow"><span class="tag gold">40 cards</span><span class="tag">~20–23 minutes</span><span class="tag">Use → to advance</span></div>
-</section>
-
-<!-- ============ 2 · AUTHORS ============ -->
-<section class="card" data-section="Authors">
-  <div class="kicker">Authors</div>
-  <h2>The authors</h2>
-  <div class="rule"></div>
-  <ul>
-    <li><strong>Kazim Topuz</strong> — presenter, University of Tulsa</li>
-    <li><strong>Jessica Bedson</strong> — University of Tulsa</li>
-    <li><strong>Tally Ferguson</strong> — University of Tulsa</li>
-    <li><strong>Thomas Kim</strong> — University of Tulsa</li>
-  </ul>
+  <p><strong>Kazim Topuz</strong> (presenter) · <strong>Jessica Bedson</strong> · <strong>Tally Ferguson</strong> · <strong>Thomas Kim</strong> — University of Tulsa</p>
   <p>Presented at <strong>DSI 2026</strong>. Contact: <strong>Kazim-Topuz@utulsa.edu</strong></p>
   <div class="callout"><p>This is a <strong>decision support</strong> talk, not a sentiment-classifier talk. The question throughout: which passages deserve a human's attention — and why?</p></div>
+  <div class="tagrow"><span class="tag gold">33 cards</span><span class="tag">~19–20 minutes</span><span class="tag">Use → to advance</span></div>
 </section>
 
-<!-- ============ 3 · DECISION PROBLEM ============ -->
+<!-- ============ 2 · DECISION PROBLEM ============ -->
 <section class="card" data-section="The research premise">
   <div class="kicker">The research premise</div>
   <h2>The decision problem: finding what matters inside a 10-K</h2>
@@ -199,22 +186,11 @@ footer.controls .btn.small{padding:11px 14px}
     <div class="stat"><b>Interpretive difficulty</b><span>Tone, economic direction, and informativeness are <em>not</em> the same construct.</span></div>
   </div>
   <div class="callout navy"><p><strong>The practical DSS question:</strong> which passages contain new, firm-specific, decision-relevant information — and which passages require closer human judgment?</p></div>
-</section>
-
-<!-- ============ 4 · MOTIVATION ============ -->
-<section class="card" data-section="The research premise">
-  <div class="kicker">The research premise · Motivation</div>
-  <h2>Why this is hard: volume, repetition, and three different things</h2>
-  <div class="rule"></div>
-  <ul>
-    <li><strong>Volume.</strong> Annual reports are long; a decision maker must find a small number of consequential passages inside lengthy filings.</li>
-    <li><strong>Repetition / boilerplate.</strong> Some negative language is routine risk-factor boilerplate, repeated year after year.</li>
-    <li><strong>Tone ≠ economics ≠ informativeness.</strong> Some neutral language describes a genuinely adverse event. A paragraph can sound negative, describe no real economic harm, and carry no new information — all at once.</li>
-  </ul>
+  <p>A paragraph can <strong>sound negative</strong>, describe <strong>no real economic harm</strong>, and carry <strong>no new information</strong> — all at once. Some neutral language describes a genuinely adverse event; some negative language is routine risk-factor boilerplate, repeated year after year.</p>
   <div class="callout"><p>The DSS challenge: distinguish <strong>tone</strong>, <strong>economic implication</strong>, and <strong>incremental informativeness</strong> — while keeping enough evidence for a human to inspect the result.</p></div>
 </section>
 
-<!-- ============ 5 · RESEARCH GAP ============ -->
+<!-- ============ 3 · RESEARCH GAP ============ -->
 <section class="card" data-section="The research premise">
   <div class="kicker">The research premise · Research gap</div>
   <h2>Why existing financial-text approaches are not enough</h2>
@@ -228,7 +204,7 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="fine">Loughran &amp; McDonald (2011); Araci (2019); Bochkay et al. (2023); Brown &amp; Tucker (2011).</p>
 </section>
 
-<!-- ============ 6 · RQs & DRs ============ -->
+<!-- ============ 4 · RQs & DRs ============ -->
 <section class="card" data-section="The research premise">
   <div class="kicker">The research premise</div>
   <h2>Four questions, four design requirements</h2>
@@ -256,7 +232,7 @@ footer.controls .btn.small{padding:11px 14px}
   </div>
 </section>
 
-<!-- ============ 7 · STUDY DATA ============ -->
+<!-- ============ 5 · STUDY DATA ============ -->
 <section class="card" data-section="Study data">
   <div class="kicker">Study data</div>
   <h2>The study data: 10 years, 11 sectors</h2>
@@ -270,7 +246,7 @@ footer.controls .btn.small{padding:11px 14px}
   <p>Focal paragraphs come from <strong>Item 1A and Item 7</strong> — no per-item split is stated here. The 2014–2015 filings serve <strong>only as historical context</strong>, to initialise the longitudinal measures, so the system can tell what is new from what is carried over.</p>
 </section>
 
-<!-- ============ 8 · HUMAN REFERENCE SET ============ -->
+<!-- ============ 6 · HUMAN REFERENCE SET ============ -->
 <section class="card" data-section="Study data">
   <div class="kicker">Study data</div>
   <h2>How we know what's right: the human reference set</h2>
@@ -284,7 +260,7 @@ footer.controls .btn.small{padding:11px 14px}
   <div class="callout navy"><p>Every result later in this talk is measured against these <strong>300 human-labelled paragraphs</strong>. (How much the reviewers themselves agreed — and what that tells us — comes with the results.)</p></div>
 </section>
 
-<!-- ============ 9 · WHAT A 10-K IS ============ -->
+<!-- ============ 7 · WHAT A 10-K IS ============ -->
 <section class="card" data-section="The 10-K">
   <div class="kicker">The 10-K · a short bridge</div>
   <h2>What a 10-K is</h2>
@@ -295,14 +271,9 @@ footer.controls .btn.small{padding:11px 14px}
     <li>Anyone can read it <strong>for free on EDGAR</strong>, the SEC's public filing database.</li>
     <li>It is <strong>not a marketing brochure</strong>: the CEO and CFO must <strong>certify its accuracy</strong>.</li>
   </ul>
-  <div class="statgrid">
-    <div class="stat"><b>60 days</b><span>after fiscal year-end — large accelerated filers (public float ≥ $700m)</span></div>
-    <div class="stat"><b>75 days</b><span>accelerated filers</span></div>
-    <div class="stat"><b>90 days</b><span>all other registrants</span></div>
-  </div>
 </section>
 
-<!-- ============ 10 · THE FOUR ITEMS ============ -->
+<!-- ============ 8 · THE FOUR ITEMS ============ -->
 <section class="card" data-section="The 10-K">
   <div class="kicker">The 10-K</div>
   <h2>The four Items that matter</h2>
@@ -316,7 +287,7 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="fine">ADAM reads Items 1A and 7: narrative-heavy, with different linguistic baselines.</p>
 </section>
 
-<!-- ============ 11 · WHY 10-Ks ARE HARD ============ -->
+<!-- ============ 9 · WHY 10-Ks ARE HARD ============ -->
 <section class="card" data-section="The 10-K">
   <div class="kicker">The 10-K</div>
   <h2>Why 10-Ks are hard: three problems</h2>
@@ -330,57 +301,32 @@ footer.controls .btn.small{padding:11px 14px}
   <p>That is exactly the problem ADAM was built to attack — starting with the oldest tool in the box: the dictionary.</p>
 </section>
 
-<!-- ============ 12 · LM: WHAT A DICTIONARY IS ============ -->
+<!-- ============ 10 · LM: WHAT A DICTIONARY IS ============ -->
 <section class="card" data-section="LM Dictionary">
   <div class="kicker">LM Dictionary · the deep dive</div>
-  <h2>What a dictionary is: computers count</h2>
+  <h2>What a dictionary is — and why a general one fails in finance</h2>
   <div class="rule"></div>
   <p class="lede">A dictionary method does not read. It <strong>counts words on a list</strong> — and divides by the total words in the passage.</p>
   <p>Loughran &amp; McDonald (2011), <em>“When Is a Liability Not a Liability? Textual Analysis, Dictionaries, and 10-Ks”</em>, <em>Journal of Finance</em> 66(1), 35–65, built finance-specific word lists so that counting could work on 10-Ks at all.</p>
+  <p class="lede">About <strong>73.8%</strong> — nearly three-fourths — of the negative word counts the Harvard-IV general dictionary produces in 10-Ks are words that are <strong>not negative in finance at all</strong>.</p>
+  <div class="tagrow"><span class="tag">tax</span><span class="tag">cost</span><span class="tag">capital</span><span class="tag">liability</span><span class="tag">board</span><span class="tag">vice</span></div>
+  <p>A tax is a fact of business, not a complaint. A board is a group of directors, not a piece of lumber. And <strong>mine, cancer, crude</strong> mark an <em>industry</em>, not an event — a mining company, a drug trial, an oil producer. A general dictionary reads the word and misses the world.</p>
   <div class="callout"><p>The LM agent in ADAM is exactly this: <strong>transparent word evidence</strong> — every point of its score traces to a specific word on a published list.</p></div>
 </section>
 
-<!-- ============ 13 · THE 73.8% TRAP ============ -->
+<!-- ============ 11 · THE SIX LM LISTS ============ -->
 <section class="card" data-section="LM Dictionary">
   <div class="kicker">LM Dictionary</div>
-  <h2>Why a general dictionary fails in finance: the ~73.8% trap</h2>
+  <h2>The six LM lists — and the formula</h2>
   <div class="rule"></div>
-  <p class="lede">About <strong>73.8%</strong> — nearly three-fourths — of the negative word counts the Harvard-IV general dictionary produces in 10-Ks are words that are <strong>not negative in finance at all</strong>.</p>
-  <div class="tagrow"><span class="tag">tax</span><span class="tag">cost</span><span class="tag">capital</span><span class="tag">liability</span><span class="tag">board</span><span class="tag">vice</span></div>
-  <p>A tax is a fact of business, not a complaint. A board is a group of directors, not a piece of lumber.</p>
-  <p>It gets worse: <strong>mine, cancer, crude</strong> mark an <em>industry</em>, not an event — a mining company, a drug trial, an oil producer. A general dictionary reads the word and misses the world.</p>
-</section>
-
-<!-- ============ 14 · THE SIX LM LISTS ============ -->
-<section class="card" data-section="LM Dictionary">
-  <div class="kicker">LM Dictionary</div>
-  <h2>The six LM lists — and what the others measure</h2>
-  <div class="rule"></div>
-  <table class="data">
-    <tr><th>List</th><th class="num">Approx. size</th></tr>
-    <tr><td>Positive</td><td class="num">~354</td></tr>
-    <tr><td>Negative</td><td class="num">~2,337–2,355</td></tr>
-    <tr><td>Uncertainty</td><td class="num">~297</td></tr>
-    <tr><td>Litigious</td><td class="num">~904</td></tr>
-    <tr><td>Strong Modal</td><td class="num">19</td></tr>
-    <tr><td>Weak Modal</td><td class="num">27</td></tr>
-    <tr><td>Constraining*</td><td class="num">~184</td></tr>
-  </table>
-  <p><strong>Uncertainty</strong> — hedging, doubt, imprecision. <strong>Litigious</strong> — legal language. <strong>Constraining</strong> — language of financial constraints. <strong>Modal (strong / weak)</strong> — how forcefully something is asserted: <em>will, must</em> vs <em>could, may, might</em>.</p>
-  <p class="fine">*Constraining is a later addition (Bodnaruk, Loughran &amp; McDonald, 2015) — not in the original 2011 six, but the same family. Sizes are approximate and version-dependent.</p>
-</section>
-
-<!-- ============ 15 · THE FORMULA ============ -->
-<section class="card" data-section="LM Dictionary">
-  <div class="kicker">LM Dictionary</div>
-  <h2>The formula: LM's own measures are proportions</h2>
-  <div class="rule"></div>
+  <p><strong>Positive</strong> — favourable outcomes. <strong>Negative</strong> — losses, declines, adverse conditions. <strong>Uncertainty</strong> — hedging, doubt, imprecision. <strong>Litigious</strong> — legal language. <strong>Constraining*</strong> — language of financial constraints. <strong>Modal (strong / weak)</strong> — how forcefully something is asserted: <em>will, must</em> vs <em>could, may, might</em>.</p>
+  <p class="fine">*Constraining is a later addition (Bodnaruk, Loughran &amp; McDonald, 2015) — not in the original 2011 six, but the same family.</p>
   <div class="bigmath">% Positive = Positive ÷ total words<br>% Negative = Negative ÷ total words<br><span class="eq">Net LM tone = (Positive − Negative) ÷ total words</span></div>
   <p>Per 1,000 words is the <strong>same measure rescaled</strong>: (count ÷ total words) × 1,000 — not a separate formula.</p>
-  <div class="callout red"><p><strong>Do not confuse it with Henry's measure.</strong> (Positive − Negative) ÷ (Positive + Negative) — range −1 to +1 — is <strong>Henry (2008)</strong>'s tone measure, widely used <em>with</em> LM lists, but it is <strong>not LM 2011's formula</strong>. In the worked example two cards ahead (5 positive, 6 negative words), Henry's measure gives (5−6)/(5+6) = <strong>−0.091</strong> — same sign as LM's −0.02, different magnitude — which is why the formula matters as much as the words.</p></div>
+  <div class="callout red"><p><strong>Do not confuse it with Henry's measure.</strong> (Positive − Negative) ÷ (Positive + Negative) — range −1 to +1 — is <strong>Henry (2008)</strong>'s tone measure, widely used <em>with</em> LM lists, but it is <strong>not LM 2011's formula</strong>. In the worked example on the next card (5 positive, 6 negative words), Henry's measure gives (5−6)/(5+6) = <strong>−0.091</strong> — same sign as LM's −0.02, different magnitude — which is why the formula matters as much as the words.</p></div>
 </section>
 
-<!-- ============ 16 · INTERACTIVE WORKED EXAMPLE ============ -->
+<!-- ============ 12 · INTERACTIVE WORKED EXAMPLE ============ -->
 <section class="card" data-section="LM Dictionary">
   <div class="kicker">LM Dictionary · Interactive example</div>
   <h2>You be the counter: 50 words, two lists, one net tone</h2>
@@ -398,10 +344,10 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="fine">Teaching passage, 50 words, written in 10-K style. “Expects” is <em>not</em> an LM Positive word; “operations” appears twice and is on neither list.</p>
 </section>
 
-<!-- ============ 17 · WHERE LM GOES WRONG (1) ============ -->
+<!-- ============ 13 · WHERE LM GOES WRONG (1) ============ -->
 <section class="card" data-section="LM Dictionary">
   <div class="kicker">LM Dictionary</div>
-  <h2>Where LM goes wrong (1): negation &amp; legal language</h2>
+  <h2>Where LM goes wrong — and the honest verdict</h2>
   <div class="rule"></div>
   <div class="callout"><p><em>“The company is <strong>not expected to</strong> face a material <strong>loss</strong> from the pending <strong>litigation</strong> this year.”</em></p></div>
   <div class="versus">
@@ -414,35 +360,20 @@ footer.controls .btn.small{padding:11px 14px}
     <li><strong>Litigious ≠ distress.</strong> Legal words describe a legal process, not necessarily a company in trouble.</li>
   </ul>
   <p>Both readings are understandable — they respond to different properties of the text. That is the point of the whole talk.</p>
-</section>
-
-<!-- ============ 18 · WHERE LM GOES WRONG (2) ============ -->
-<section class="card" data-section="LM Dictionary">
-  <div class="kicker">LM Dictionary</div>
-  <h2>Where LM goes wrong (2): boilerplate, conditionals, mixed news</h2>
-  <div class="rule"></div>
-  <ul>
+<ul>
     <li><strong>Boilerplate.</strong> A risk paragraph repeated unchanged for five years scores exactly the same as one written yesterday. LM cannot tell fresh news from carryover.</li>
     <li><strong>Conditionality.</strong> <em>Could / may / if</em> change what a sentence commits to — the count does not move.</li>
     <li><strong>Mixed statements.</strong> Bad history plus a good outlook in one sentence: one net number hides both halves.</li>
     <li><strong>Factual events with neutral wording.</strong> A genuinely adverse event described in flat, factual language scores near zero — while routine risk language scores as “negative”.</li>
   </ul>
-  <div class="callout"><p>A dictionary sees <strong>words</strong>, not sentences — and not years, peers, or context.</p></div>
-</section>
-
-<!-- ============ 19 · LM'S HONEST VERDICT ============ -->
-<section class="card" data-section="LM Dictionary">
-  <div class="kicker">LM Dictionary</div>
-  <h2>LM's honest verdict</h2>
-  <div class="rule"></div>
   <div class="two-col">
-    <div class="callout green"><p><strong>Strength: transparent and auditable.</strong> Every point of the score traces to a specific word on a published list. If you disagree, open the list and argue about the word. No black box, no mystery weights.</p></div>
+    <div class="callout green"><p><strong>Strength: transparent and auditable.</strong> Every point of the score traces to a specific word on a published list. No black box, no mystery weights.</p></div>
     <div class="callout red"><p><strong>Limit: context-blind.</strong> It counts words, not sentences. Negation, legal language, boilerplate, conditionality, and mixed statements all defeat it in different ways.</p></div>
   </div>
-  <p class="lede">That is why ADAM keeps LM as <strong>one agent among three</strong> — never as the whole verdict. Its evidence is real, but it is lexical evidence only, and the adjudicator needs to know what it cannot see.</p>
+  <p class="lede">A dictionary sees <strong>words</strong>, not sentences — and not years, peers, or context. That is why ADAM keeps LM as <strong>one agent among three</strong> — never as the whole verdict.</p>
 </section>
 
-<!-- ============ 20 · FINBERT: WHAT IT IS ============ -->
+<!-- ============ 14 · FINBERT: WHAT IT IS ============ -->
 <section class="card" data-section="FinBERT">
   <div class="kicker">FinBERT · alone, not mixed with ADAM</div>
   <h2>FinBERT: a model that reads the sentence</h2>
@@ -455,7 +386,7 @@ footer.controls .btn.small{padding:11px 14px}
   <div class="callout"><p><strong>Note the venue:</strong> an arXiv preprint and MSc thesis from the University of Amsterdam — <em>not</em> a peer-reviewed journal paper — and it still became the standard finance sentiment model.</p></div>
 </section>
 
-<!-- ============ 21 · HOW FINBERT WORKS ============ -->
+<!-- ============ 15 · HOW FINBERT WORKS ============ -->
 <section class="card" data-section="FinBERT">
   <div class="kicker">FinBERT</div>
   <h2>How it works: softmax → argmax → confidence</h2>
@@ -465,7 +396,7 @@ footer.controls .btn.small{padding:11px 14px}
   <p>The three probabilities always sum to <strong>1.00</strong> — if they don't, something is wrong before you start.</p>
 </section>
 
-<!-- ============ 22 · FINBERT WORKED EXAMPLE ============ -->
+<!-- ============ 16 · FINBERT WORKED EXAMPLE ============ -->
 <section class="card" data-section="FinBERT">
   <div class="kicker">FinBERT · Worked example</div>
   <h2>Worked example: 0.62 is a weak kind of confident</h2>
@@ -480,7 +411,7 @@ footer.controls .btn.small{padding:11px 14px}
   <div class="callout red"><p><strong>Routes to human review.</strong> ADAM's review threshold is 0.80 — any paragraph below 0.80 goes to a human. At 0.62, this paragraph goes to review <em>even though its predicted class is clear</em>. A confident-sounding label and a low confidence number can live in the same output.</p></div>
 </section>
 
-<!-- ============ 23 · THE FRICTION + SIX REASONS ============ -->
+<!-- ============ 17 · THE FRICTION + SIX REASONS ============ -->
 <section class="card" data-section="FinBERT">
   <div class="kicker">FinBERT · The friction</div>
   <h2>The friction: same sentence, two credible verdicts</h2>
@@ -503,7 +434,7 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="fine">Agreement does not guarantee correctness; disagreement does not necessarily imply ambiguity.</p>
 </section>
 
-<!-- ============ 24 · FINBERT STRENGTHS ============ -->
+<!-- ============ 18 · FINBERT STRENGTHS ============ -->
 <section class="card" data-section="FinBERT">
   <div class="kicker">FinBERT</div>
   <h2>FinBERT's strengths: semantic context</h2>
@@ -519,7 +450,7 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="fine"><span class="pill">Preliminary — validation ongoing</span><br>Evaluated on the 300-paragraph human reference set.</p>
 </section>
 
-<!-- ============ 25 · FINBERT LIMITS + BRIDGE ============ -->
+<!-- ============ 19 · FINBERT LIMITS + BRIDGE ============ -->
 <section class="card" data-section="FinBERT">
   <div class="kicker">FinBERT</div>
   <h2>FinBERT's limits — so why not stop here?</h2>
@@ -532,7 +463,7 @@ footer.controls .btn.small{padding:11px 14px}
   <div class="callout navy"><p>To cross that boundary you need temporal and peer context — and something to <strong>coordinate the evidence</strong>. That something is ADAM. →</p></div>
 </section>
 
-<!-- ============ 26 · ADAM: THE AGENTIC IDEA ============ -->
+<!-- ============ 20 · ADAM: THE AGENTIC IDEA ============ -->
 <section class="card" data-section="ADAM">
   <div class="kicker">ADAM · the system</div>
   <h2>ADAM: the agentic idea</h2>
@@ -543,7 +474,7 @@ footer.controls .btn.small{padding:11px 14px}
   <div class="tagrow"><span class="tag">LM lexicon</span><span class="tag">FinBERT</span><span class="tag">Context &amp; Quality</span><span class="tag gold">+ LLM adjudicator</span></div>
 </section>
 
-<!-- ============ 27 · SIX LAYERS ============ -->
+<!-- ============ 21 · SIX LAYERS ============ -->
 <section class="card" data-section="ADAM">
   <div class="kicker">ADAM</div>
   <h2>Six layers, from disclosure to decision support</h2>
@@ -559,7 +490,7 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="fine">Layer 2 is what makes everything traceable: every paragraph stays linked to its firm, year, section, sector, prior-year context, peer context, and provenance.</p>
 </section>
 
-<!-- ============ 28 · THREE EVIDENCE AGENTS ============ -->
+<!-- ============ 22 · THREE EVIDENCE AGENTS ============ -->
 <section class="card" data-section="ADAM">
   <div class="kicker">ADAM</div>
   <h2>Three evidence agents — deliberately non-equivalent roles</h2>
@@ -572,7 +503,7 @@ footer.controls .btn.small{padding:11px 14px}
   <div class="callout"><p>The Context &amp; Quality Agent <strong>does not decide sentiment at all</strong> — it qualifies how much the language matters <em>here and now</em>. The outputs stay separate until adjudication.</p></div>
 </section>
 
-<!-- ============ 29 · CONTEXT & QUALITY ============ -->
+<!-- ============ 23 · CONTEXT & QUALITY ============ -->
 <section class="card" data-section="ADAM">
   <div class="kicker">ADAM</div>
   <h2>What the Context &amp; Quality Agent adds</h2>
@@ -588,7 +519,7 @@ footer.controls .btn.small{padding:11px 14px}
   <div class="callout navy"><p>Sentiment answers <strong>“what is the tone?”</strong>; context answers <strong>“how informative is this language here and now?”</strong></p></div>
 </section>
 
-<!-- ============ 30 · ADJUDICATION ============ -->
+<!-- ============ 24 · ADJUDICATION ============ -->
 <section class="card" data-section="ADAM">
   <div class="kicker">ADAM</div>
   <h2>Adjudication separates what other systems collapse</h2>
@@ -600,7 +531,7 @@ footer.controls .btn.small{padding:11px 14px}
   <div class="callout navy"><p>Market outcomes are <strong>not</strong> observed by the adjudicator — they are reserved for external validation.</p></div>
 </section>
 
-<!-- ============ 31 · SIX DISCREPANCY CATEGORIES ============ -->
+<!-- ============ 25 · SIX DISCREPANCY CATEGORIES ============ -->
 <section class="card" data-section="ADAM">
   <div class="kicker">ADAM</div>
   <h2>When the agents disagree, diagnose why: six categories</h2>
@@ -617,7 +548,7 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="fine">Agreement does not guarantee correctness; disagreement does not necessarily imply ambiguity.</p>
 </section>
 
-<!-- ============ 32 · INTERACTIVE: YOU BE THE ADJUDICATOR ============ -->
+<!-- ============ 26 · INTERACTIVE: YOU BE THE ADJUDICATOR ============ -->
 <section class="card" data-section="ADAM">
   <div class="kicker">ADAM · Interactive</div>
   <h2>You be the adjudicator — vote A, B, or C</h2>
@@ -640,7 +571,7 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="fine">Ask the room to vote first, then tap the answer to reveal it.</p>
 </section>
 
-<!-- ============ 33 · EVALUATION DESIGN + HUMAN AGREEMENT ============ -->
+<!-- ============ 27 · EVALUATION DESIGN + HUMAN AGREEMENT ============ -->
 <section class="card" data-section="Results">
   <div class="kicker">Results · How the numbers were earned</div>
   <span class="pill">Preliminary — validation ongoing</span>
@@ -658,7 +589,7 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="fine">Chance-corrected reliability statistics are to be reported in the final manuscript. Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
 </section>
 
-<!-- ============ 34 · LINGUISTIC SENTIMENT ============ -->
+<!-- ============ 28 · LINGUISTIC SENTIMENT ============ -->
 <section class="card" data-section="Results">
   <div class="kicker">Results</div>
   <span class="pill">Preliminary — validation ongoing</span>
@@ -675,7 +606,7 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="fine">Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
 </section>
 
-<!-- ============ 35 · ECONOMIC DIRECTION + INFORMATIVENESS (ADAM) ============ -->
+<!-- ============ 29 · ECONOMIC DIRECTION + INFORMATIVENESS (ADAM) ============ -->
 <section class="card" data-section="Results">
   <div class="kicker">Results</div>
   <span class="pill">Preliminary — validation ongoing</span>
@@ -690,7 +621,7 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="fine">Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
 </section>
 
-<!-- ============ 36 · WHEN LM ≠ FINBERT ============ -->
+<!-- ============ 30 · WHEN LM ≠ FINBERT ============ -->
 <section class="card" data-section="Results">
   <div class="kicker">Results</div>
   <span class="pill">Preliminary — validation ongoing</span>
@@ -709,7 +640,7 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="fine">Macro-F1 is not reported for LM / ensemble on the disagreement subset (slide 16). Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
 </section>
 
-<!-- ============ 37 · ARCHITECTURE TEST ============ -->
+<!-- ============ 31 · ARCHITECTURE TEST ============ -->
 <section class="card" data-section="Results">
   <div class="kicker">Results</div>
   <span class="pill">Preliminary — validation ongoing</span>
@@ -727,7 +658,7 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="fine">Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
 </section>
 
-<!-- ============ 38 · DECISION SUPPORT ============ -->
+<!-- ============ 32 · DECISION SUPPORT ============ -->
 <section class="card" data-section="Results">
   <div class="kicker">Results</div>
   <span class="pill">Preliminary — validation ongoing</span>
@@ -747,24 +678,12 @@ footer.controls .btn.small{padding:11px 14px}
   <p class="fine">Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
 </section>
 
-<!-- ============ 39 · THREE TAKEAWAYS ============ -->
-<section class="card" data-section="Finish">
-  <div class="kicker">Takeaways</div>
-  <h2>Three takeaways</h2>
-  <div class="rule"></div>
-  <ol>
-    <li><strong>Different models see different evidence.</strong><br>Do not collapse that evidence too early.</li>
-    <li><strong>Disagreement can be diagnostically useful.</strong><br>Ask why methods diverge — and whether the conflict is resolvable.</li>
-    <li><strong>Decision support is more than accuracy.</strong><br>Traceability, uncertainty, context, and human attention are part of the output.</li>
-  </ol>
-  <div class="callout"><p>Close with the design insight — not the accuracy number.</p></div>
-</section>
-
-<!-- ============ 40 · WHAT'S NEXT + QUESTIONS ============ -->
+<!-- ============ 33 · WHAT'S NEXT + QUESTIONS ============ -->
 <section class="card" data-section="Finish">
   <div class="kicker">Finish · What's next</div>
   <h2>What happens next — and questions</h2>
   <div class="rule"></div>
+  <p><strong>Three takeaways:</strong> different models see different evidence · disagreement can be diagnostic · decision support is more than accuracy.</p>
   <p><strong>Next steps:</strong> finalise the Context &amp; Quality Agent operationalisation, confirmatory validation, disagreement analysis, and architecture ablations.</p>
   <p>The design logic generalises beyond SEC filings — anywhere multiple analytical methods read complex narratives differently: regulatory, legal, clinical, cybersecurity, or operational text.</p>
   <div class="callout navy">
@@ -799,26 +718,25 @@ var progbar = document.getElementById("progbar");
 var seclabel = document.getElementById("seclabel");
 var notesEl = document.getElementById("notes");
 
-/* Presenter notes: one per section-opener card, plus the data card (card 7)
+/* Presenter notes: one per section-opener card, plus the data card (card 5)
    carries the one-line 175,779 reconciliation so it can be answered live. */
 var NOTES = {
-  1: "<b>Card 1 — Title.</b> Open with the problem, not the technology: annual reports contain valuable information, but they are long, repetitive, legally conditioned, and difficult to interpret consistently.",
-  2: "<b>Card 2 — Authors.</b> Kazim presents. Keep introductions to one line each; the talk is about the decision problem, not the team.",
-  3: "<b>Card 3 — The research premise.</b> The decision problem first: finding what matters inside a 10-K. Volume, repetition, and interpretive difficulty — tone, economics, and informativeness are not the same construct.",
-  7: "<b>Card 7 — Study data (reconciliation).</b> If asked: 143,372 focal paragraphs (2016–2025) + 32,407 historical context (2014–2015) = 175,779 paragraphs in total (≈176k). MK decided the deck uses 143,372 focal with no per-item split — do not quote a per-item split of the focal set.",
-  9: "<b>Card 9 — The 10-K.</b> Keep this section short — three cards, a bridge, not a lecture. The 10-K is long because it has to be; that length is exactly the problem ADAM attacks.",
-  12: "<b>Card 12 — LM.</b> Spend the most time here. Computers can't read — they count. The 50-word example (card 16) is the moment to slow down and let the room count along.",
-  20: "<b>Card 20 — FinBERT.</b> FinBERT reads the sentence, not the words. The 0.62 example (card 22) is the pivot: a clear label can still carry a low confidence.",
-  26: "<b>Card 26 — ADAM.</b> Agentic = specialised roles + structured evidence + explicit coordination — not “an LLM does everything”, and not a vote.",
-  33: "<b>Card 33 — Results.</b> Start with the humans: reviewers agreed unanimously only 21% / 25% / 32% of the time. Every number from here on is preliminary — say the label out loud.",
-  34: "<b>Card 34 — Sentiment.</b> Row by row, top to bottom. LM 37.3%: the dictionary barely beats chance on three-way sentiment, because it counts words without context. FinBERT 60.7%: context helps a lot, but it is still a single reader — and the ensemble 58.7% actually falls <i>below</i> FinBERT, because averaging two disagreeing readers throws evidence away. ADAM 82.7% / F1 0.745: point at the highlighted row — the gain is architectural, coordinate the evidence instead of averaging it. Say the PRELIMINARY label out loud before moving on.",
-  35: "<b>Card 35 — Direction vs informativeness.</b> Two rows, same ADAM, two different jobs. Direction 83.3% / F1 0.689: point out precision 0.757 beats recall 0.647 — when ADAM calls a direction it is usually right, but it misses some. Informativeness 71.4% / F1 0.607: the lowest row on the card and the hardest construct — whether a paragraph tells an investor something new depends on context outside the paragraph. Say next: a paragraph can be linguistically neutral, economically adverse, and highly informative at once, and ADAM keeps those three answers separate.",
-  36: "<b>Card 36 — Disagreement.</b> Slow down — this is the key analysis. First the 162 of 300 (54%): more than half the sample is a disagreement case, not an edge case. Row by row: LM collapses to 25.3% here — below chance, because when it disagrees it is usually the wrong one; the ensemble 64.8% and FinBERT 68.5% do better, but ADAM 76.5% / F1 0.703 is the only one that adjudicates instead of picking a side. Then the callout: where both base models were wrong (77 paragraphs), ADAM is still right 89.6% of the time — that is the payoff of the Context &amp; Quality evidence. Say next: disagreement is not noise, it is where coordination earns its keep.",
-  37: "<b>Card 37 — Architecture test.</b> Three rows, same adjudicator, more evidence each time — that is the whole experiment. The sentiment and direction columns barely move (82.0 → 82.0 → 82.7; 84.0 → 83.7 → 83.3): point at them and say the LLM was already doing that work. The informativeness column is the story: F1 0.453 → 0.469 → 0.607, Δ +.138 vs Base and +.154 vs Judge-only, both statistically significant. Say the honest line out loud: Judge-only already reaches 82.0% sentiment and 84.0% direction — the proven architectural gain is informativeness only.",
-  38: "<b>Card 38 — Decision support.</b> Three payoffs, row by row. The flag rows: 81.0% precision means four in five flagged paragraphs really are highly informative, vs 19.5% for the FinBERT-negative shortcut — that shortcut is the proxy trap, never use a sentiment label as an importance label. The routing rows: confidence below 0.80 sends 56% to review and catches 92.3% of ADAM's errors, leaving the automated remainder at 97.0% — say that the review budget buys the accuracy. Close with the traceability line: every one of the 300 cases carries a complete evidence record, paragraph → agents → context → rationale.",
-  39: "<b>Card 39 — Takeaways.</b> Close with the design insight, not the accuracy number. Then questions."
+  1: "<b>Card 1 — Title &amp; authors.</b> Open with the problem, not the technology: annual reports contain valuable information, but they are long, repetitive, legally conditioned, and difficult to interpret consistently. Kazim presents — keep introductions to one line each; the talk is about the decision problem, not the team.",
+  2: "<b>Card 2 — The research premise.</b> The decision problem first: finding what matters inside a 10-K. Volume, repetition, and interpretive difficulty — tone, economics, and informativeness are not the same construct.",
+  5: "<b>Card 5 — Study data (reconciliation).</b> If asked: 143,372 focal paragraphs (2016–2025) + 32,407 historical context (2014–2015) = 175,779 paragraphs in total (≈176k). MK decided the deck uses 143,372 focal with no per-item split — do not quote a per-item split of the focal set.",
+  7: "<b>Card 7 — The 10-K.</b> Keep this section short — three cards, a bridge, not a lecture. The 10-K is long because it has to be; that length is exactly the problem ADAM attacks.",
+  10: "<b>Card 10 — LM.</b> Spend the most time here. Computers can't read — they count. The 50-word example (card 12) is the moment to slow down and let the room count along.",
+  14: "<b>Card 14 — FinBERT.</b> FinBERT reads the sentence, not the words. The 0.62 example (card 16) is the pivot: a clear label can still carry a low confidence.",
+  20: "<b>Card 20 — ADAM.</b> Agentic = specialised roles + structured evidence + explicit coordination — not “an LLM does everything”, and not a vote.",
+  27: "<b>Card 27 — Results.</b> Start with the humans: reviewers agreed unanimously only 21% / 25% / 32% of the time. Every number from here on is preliminary — say the label out loud.",
+  28: "<b>Card 28 — Sentiment.</b> Row by row, top to bottom. LM 37.3%: the dictionary barely beats chance on three-way sentiment, because it counts words without context. FinBERT 60.7%: context helps a lot, but it is still a single reader — and the ensemble 58.7% actually falls <i>below</i> FinBERT, because averaging two disagreeing readers throws evidence away. ADAM 82.7% / F1 0.745: point at the highlighted row — the gain is architectural, coordinate the evidence instead of averaging it. Say the PRELIMINARY label out loud before moving on.",
+  29: "<b>Card 29 — Direction vs informativeness.</b> Two rows, same ADAM, two different jobs. Direction 83.3% / F1 0.689: point out precision 0.757 beats recall 0.647 — when ADAM calls a direction it is usually right, but it misses some. Informativeness 71.4% / F1 0.607: the lowest row on the card and the hardest construct — whether a paragraph tells an investor something new depends on context outside the paragraph. Say next: a paragraph can be linguistically neutral, economically adverse, and highly informative at once, and ADAM keeps those three answers separate.",
+  30: "<b>Card 30 — Disagreement.</b> Slow down — this is the key analysis. First the 162 of 300 (54%): more than half the sample is a disagreement case, not an edge case. Row by row: LM collapses to 25.3% here — below chance, because when it disagrees it is usually the wrong one; the ensemble 64.8% and FinBERT 68.5% do better, but ADAM 76.5% / F1 0.703 is the only one that adjudicates instead of picking a side. Then the callout: where both base models were wrong (77 paragraphs), ADAM is still right 89.6% of the time — that is the payoff of the Context &amp; Quality evidence. Say next: disagreement is not noise, it is where coordination earns its keep.",
+  31: "<b>Card 31 — Architecture test.</b> Three rows, same adjudicator, more evidence each time — that is the whole experiment. The sentiment and direction columns barely move (82.0 → 82.0 → 82.7; 84.0 → 83.7 → 83.3): point at them and say the LLM was already doing that work. The informativeness column is the story: F1 0.453 → 0.469 → 0.607, Δ +.138 vs Base and +.154 vs Judge-only, both statistically significant. Say the honest line out loud: Judge-only already reaches 82.0% sentiment and 84.0% direction — the proven architectural gain is informativeness only.",
+  32: "<b>Card 32 — Decision support.</b> Three payoffs, row by row. The flag rows: 81.0% precision means four in five flagged paragraphs really are highly informative, vs 19.5% for the FinBERT-negative shortcut — that shortcut is the proxy trap, never use a sentiment label as an importance label. The routing rows: confidence below 0.80 sends 56% to review and catches 92.3% of ADAM's errors, leaving the automated remainder at 97.0% — say that the review budget buys the accuracy. Close with the traceability line: every one of the 300 cases carries a complete evidence record, paragraph → agents → context → rationale.",
+  33: "<b>Card 33 — Finish.</b> Close with the design insight, not the accuracy number: different models see different evidence; disagreement can be diagnostic; decision support is more than accuracy. Then questions."
 };
-var SECTION_OPENER = {"Title":1,"Authors":2,"The research premise":3,"Study data":7,"The 10-K":9,"LM Dictionary":12,"FinBERT":20,"ADAM":26,"Results":33,"Finish":39};
+var SECTION_OPENER = {"Title":1,"The research premise":2,"Study data":5,"The 10-K":7,"LM Dictionary":10,"FinBERT":14,"ADAM":20,"Results":27,"Finish":33};
 
 function show(i){
   if(i < 0) i = 0;
@@ -873,7 +791,7 @@ document.getElementById("stage").addEventListener("touchend", function(e){
   if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)){ if(dx < 0) next(); else prev(); }
 }, {passive:true});
 
-/* ---------- Quiz / reveal pattern (card 32) ---------- */
+/* ---------- Quiz / reveal pattern (card 26) ---------- */
 document.querySelectorAll(".quiz").forEach(function(quiz){
   var reveal = document.getElementById(quiz.id + "-reveal");
   quiz.querySelectorAll(".opt").forEach(function(btn){
@@ -889,7 +807,7 @@ document.querySelectorAll(".quiz").forEach(function(quiz){
   });
 });
 
-/* ---------- LM word-counter (card 16) ---------- */
+/* ---------- LM word-counter (card 12) ---------- */
 var LM_WORDS = [
   ["Strong","pos"],["demand","none"],["helped","none"],["sales","none"],["improve","pos"],
   ["this","none"],["year,","none"],["and","none"],["efficient","pos"],["operations","none"],
