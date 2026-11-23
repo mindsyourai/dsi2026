@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>From Model Disagreement to Disclosure Intelligence — ADAM · DSI 2026</title>
-<meta name="description" content="Presentation deck: From Model Disagreement to Disclosure Intelligence (ADAM, DSI 2026). 38 cards, presenter-ready.">
+<meta name="description" content="Presentation deck: From Model Disagreement to Disclosure Intelligence (ADAM, DSI 2026). 40 cards, presenter-ready.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -41,7 +41,7 @@ header.topbar{
 .brand{font-weight:800; letter-spacing:.14em; font-size:.85rem; text-transform:uppercase; color:var(--gold)}
 .seclabel{font-size:.95rem; color:#c9cfe6}
 .progress{flex:1 1 160px; height:8px; background:#232c66; border-radius:99px; overflow:hidden; min-width:120px}
-.progress i{display:block; height:100%; width:2.56%; background:var(--gold); border-radius:99px; transition:width .25s ease}
+.progress i{display:block; height:100%; width:2.5%; background:var(--gold); border-radius:99px; transition:width .25s ease}
 .counter{font-variant-numeric:tabular-nums; font-weight:700; color:#f4edd9; white-space:nowrap}
 /* ---------- stage & cards ---------- */
 main.stage{flex:1; display:flex; align-items:center; justify-content:center; padding:10px 16px 18px; position:relative}
@@ -77,7 +77,7 @@ table.data td.num,table.data th.num{text-align:right; font-variant-numeric:tabul
 .bigmath{font-size:clamp(1.25rem,3vw,1.9rem); font-weight:800; color:var(--navy); text-align:center; background:#fff; border:2px solid var(--gold); border-radius:14px; padding:16px 12px; margin:18px 0; line-height:1.5}
 .bigmath .eq{color:var(--gold-dark)}
 .two-col{display:grid; grid-template-columns:1fr 1fr; gap:18px}
-@media (max-width:760px){ .two-col{grid-template-columns:1fr} .versus{grid-template-columns:1fr !important} .card{min-height:0} }
+@media (max-width:760px){ .two-col{grid-template-columns:1fr} .versus{grid-template-columns:1fr !important} .card{min-height:0} table.data{font-size:.88rem} table.data th,table.data td{padding:8px 9px} table.data.wide{font-size:.8rem} table.data.wide th,table.data.wide td{padding:7px 5px} }
 .tagrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
 .tag{background:var(--navy); color:#f4edd9; border-radius:99px; padding:6px 14px; font-size:.92rem; font-weight:600}
 .tag.gold{background:var(--gold); color:#231a02}
@@ -155,7 +155,7 @@ footer.controls .btn.small{padding:11px 14px}
   <span class="brand">ADAM · DSI 2026</span>
   <span class="seclabel" id="seclabel">Title</span>
   <div class="progress" aria-hidden="true"><i id="progbar"></i></div>
-  <span class="counter" id="counter">Card 1 of 38</span>
+  <span class="counter" id="counter">Card 1 of 40</span>
 </header>
 
 <main class="stage" id="stage">
@@ -170,7 +170,7 @@ footer.controls .btn.small{padding:11px 14px}
   <div class="rule"></div>
   <p class="lede">When two credible methods disagree about the same paragraph, don't average the disagreement away. Diagnose it.</p>
   <p>Kazim Topuz (presenter) · Jessica Bedson · Tally Ferguson · Thomas Kim</p>
-  <div class="tagrow"><span class="tag gold">38 cards</span><span class="tag">~20–22 minutes</span><span class="tag">Use → to advance</span></div>
+  <div class="tagrow"><span class="tag gold">40 cards</span><span class="tag">~20–23 minutes</span><span class="tag">Use → to advance</span></div>
 </section>
 
 <!-- ============ 2 · AUTHORS ============ -->
@@ -646,66 +646,108 @@ footer.controls .btn.small{padding:11px 14px}
   <span class="pill">Preliminary — validation ongoing</span>
   <h2>First, how hard is the task? Ask the humans.</h2>
   <div class="rule"></div>
-  <p>On the 300-paragraph reference set, unanimous agreement among the three reviewers was only:</p>
-  <div class="statgrid">
-    <div class="stat"><b>21%</b><span>linguistic sentiment (66% two-of-three, 13% all differ)</span></div>
-    <div class="stat"><b>25%</b><span>economic direction (64% two-of-three, 11% all differ)</span></div>
-    <div class="stat"><b>32%</b><span>informativeness (54% two-of-three, 14% all differ)</span></div>
-  </div>
+  <p>On the 300-paragraph reference set, three blinded reviewers agreed unanimously only:</p>
+  <table class="data">
+    <tr><th>Construct</th><th class="num">All 3 agree</th><th class="num">2 of 3 agree</th><th class="num">All differ</th></tr>
+    <tr><td>Linguistic sentiment</td><td class="num">21%</td><td class="num">66%</td><td class="num">13%</td></tr>
+    <tr><td>Economic direction</td><td class="num">25%</td><td class="num">64%</td><td class="num">11%</td></tr>
+    <tr><td>Disclosure informativeness</td><td class="num">32%</td><td class="num">54%</td><td class="num">14%</td></tr>
+  </table>
   <p>That is not (only) annotation noise — it is a signal that the task is <strong>genuinely difficult</strong>. Interpretive disagreement becomes an empirical signal of task difficulty.</p>
   <p><strong>Evaluation design:</strong> the same adjudicator is tested with progressively more evidence — Judge-only (paragraph only) → Base evidence (+ LM + FinBERT) → Full ADAM (+ Context &amp; Quality) — against conventional benchmarks (LM, FinBERT, LM–FinBERT ensemble). Accuracy + macro-F1, class-level precision / recall, agreement vs disagreement cases, and review-needed alignment are all reported.</p>
   <p class="fine">Chance-corrected reliability statistics are to be reported in the final manuscript. Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
 </section>
 
-<!-- ============ 34 · HEADLINE RESULTS ============ -->
+<!-- ============ 34 · LINGUISTIC SENTIMENT ============ -->
 <section class="card" data-section="Results">
   <div class="kicker">Results</div>
   <span class="pill">Preliminary — validation ongoing</span>
-  <h2>Headline results: sentiment, direction, informativeness</h2>
+  <h2>Linguistic sentiment: a large preliminary gain</h2>
   <div class="rule"></div>
   <table class="data">
-    <tr><th>Method</th><th class="num">Sentiment accuracy</th><th class="num">Macro-F1</th></tr>
+    <tr><th>Method</th><th class="num">Accuracy</th><th class="num">Macro-F1</th></tr>
     <tr><td>LM dictionary</td><td class="num">37.3%</td><td class="num">0.320</td></tr>
     <tr><td>FinBERT</td><td class="num">60.7%</td><td class="num">0.529</td></tr>
     <tr><td>LM–FinBERT ensemble</td><td class="num">58.7%</td><td class="num">0.384</td></tr>
     <tr class="hl"><td>ADAM (current)</td><td class="num">82.7%</td><td class="num">0.745</td></tr>
   </table>
-  <p>ADAM also separates the other constructs: economic direction <strong>83.3%</strong> accuracy (macro-F1 0.689); disclosure informativeness <strong>71.4%</strong> (0.607) — the hardest of the three.</p>
-  <p class="fine">300-paragraph human reference set. Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
+  <p>The main claim is architectural: <strong>preserve and coordinate evidence rather than average it away</strong> — the ensemble (58.7%) falls below FinBERT alone (60.7%). Accuracy / macro-F1 on the 300-paragraph human reference set.</p>
+  <p class="fine">Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
 </section>
 
-<!-- ============ 35 · DISAGREEMENT + ABLATION ============ -->
+<!-- ============ 35 · ECONOMIC DIRECTION + INFORMATIVENESS (ADAM) ============ -->
 <section class="card" data-section="Results">
   <div class="kicker">Results</div>
   <span class="pill">Preliminary — validation ongoing</span>
-  <h2>Where disagreement lives — and does the architecture matter?</h2>
+  <h2>ADAM separates direction from informativeness</h2>
   <div class="rule"></div>
-  <div class="callout navy"><p><strong>The disagreement headline:</strong> LM and FinBERT disagree on <strong>162 of 300 paragraphs (54%)</strong>. There, ADAM reaches <strong>76.5%</strong> accuracy (macro-F1 0.703), vs FinBERT 68.5%, ensemble 64.8%, LM 25.3%. Where <em>both</em> base models were wrong (77 paragraphs), ADAM is correct on <strong>89.6%</strong>.</p></div>
-  <p><strong>The ablation</strong> (same adjudicator, progressively more evidence) — informativeness macro-F1:</p>
-  <table class="data">
-    <tr><th>Configuration</th><th class="num">Informativeness F1</th></tr>
-    <tr><td>Judge-only (paragraph only)</td><td class="num">0.453</td></tr>
-    <tr><td>Base evidence (+ LM + FinBERT)</td><td class="num">0.469</td></tr>
-    <tr class="hl"><td>Full ADAM (+ Context &amp; Quality)</td><td class="num">0.607</td></tr>
+  <table class="data wide">
+    <tr><th>Construct (ADAM, current)</th><th class="num">Accuracy</th><th class="num">Macro-F1</th><th class="num">Precision</th><th class="num">Recall</th></tr>
+    <tr><td>Economic direction</td><td class="num">83.3%</td><td class="num">0.689</td><td class="num">0.757</td><td class="num">0.647</td></tr>
+    <tr class="hl"><td>Disclosure informativeness</td><td class="num">71.4%</td><td class="num">0.607</td><td class="num">0.631</td><td class="num">0.649</td></tr>
   </table>
-  <p>Gains Δ <strong>+.138</strong> vs Base and <strong>+.154</strong> vs Judge-only — both statistically significant. The honest boundary: Judge-only already reaches <strong>82.0%</strong> on sentiment and <strong>84.0%</strong> on direction (slightly above Full ADAM's 83.3%) — <strong>the proven architectural gain is informativeness</strong>, where the construct depends on information outside the paragraph.</p>
-  <p class="fine">Every number on this card is preliminary. Research still ongoing — confirmatory validation to come in the final paper.</p>
+  <p>Informativeness is the <strong>hardest construct</strong> — the lowest row on the card. Precision / recall here are macro-averaged. A paragraph can be linguistically neutral, economically adverse, and highly informative — ADAM is designed to preserve those distinctions.</p>
+  <p class="fine">Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
 </section>
 
-<!-- ============ 36 · DECISION SUPPORT ============ -->
+<!-- ============ 36 · WHEN LM ≠ FINBERT ============ -->
+<section class="card" data-section="Results">
+  <div class="kicker">Results</div>
+  <span class="pill">Preliminary — validation ongoing</span>
+  <h2>When LM and FinBERT disagree — the key analysis</h2>
+  <div class="rule"></div>
+  <p>LM and FinBERT disagree on <strong>162 of 300 paragraphs (54%)</strong> of the validation sample. There:</p>
+  <table class="data">
+    <tr><th>Method</th><th class="num">Accuracy</th><th class="num">Macro-F1</th></tr>
+    <tr><td>LM dictionary</td><td class="num">25.3%</td><td class="num">—</td></tr>
+    <tr><td>LM–FinBERT ensemble</td><td class="num">64.8%</td><td class="num">—</td></tr>
+    <tr><td>FinBERT</td><td class="num">68.5%</td><td class="num">0.606</td></tr>
+    <tr class="hl"><td>ADAM</td><td class="num">76.5%</td><td class="num">0.703</td></tr>
+  </table>
+  <div class="callout"><p>Where <strong>both</strong> base models were wrong (77 paragraphs), ADAM is correct on <strong>89.6%</strong>.</p></div>
+  <p>Disagreement is not merely noise — it identifies the cases where evidence coordination is most relevant.</p>
+  <p class="fine">Macro-F1 is not reported for LM / ensemble on the disagreement subset (slide 16). Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
+</section>
+
+<!-- ============ 37 · ARCHITECTURE TEST ============ -->
+<section class="card" data-section="Results">
+  <div class="kicker">Results</div>
+  <span class="pill">Preliminary — validation ongoing</span>
+  <h2>Does the architecture matter — or is the LLM doing all the work?</h2>
+  <div class="rule"></div>
+  <p>Same adjudicator, progressively more evidence. Each cell: accuracy / macro-F1. (Info. = disclosure informativeness.)</p>
+  <table class="data">
+    <tr><th>Configuration</th><th class="num">Sentiment</th><th class="num">Direction</th><th class="num">Info.</th></tr>
+    <tr><td>Judge-only (paragraph only)</td><td class="num">82.0% / .731</td><td class="num">84.0% / .683</td><td class="num">67.2% / .453</td></tr>
+    <tr><td>Base evidence (+ LM + FinBERT)</td><td class="num">82.0% / .730</td><td class="num">83.7% / .694</td><td class="num">68.3% / .469</td></tr>
+    <tr class="hl"><td>Full ADAM (+ Context &amp; Quality)</td><td class="num">82.7% / .745</td><td class="num">83.3% / .689</td><td class="num">71.4% / .607</td></tr>
+  </table>
+  <p>Informativeness ΔF1: <strong>+.138</strong> vs Base, <strong>+.154</strong> vs Judge-only — both statistically significant. Context adds little for sentiment or economic direction, but materially improves disclosure informativeness.</p>
+  <p>The honest boundary: Judge-only already reaches <strong>82.0%</strong> on sentiment and <strong>84.0%</strong> on direction (slightly above Full ADAM's 83.3%) — <strong>the proven architectural gain is informativeness</strong>.</p>
+  <p class="fine">Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
+</section>
+
+<!-- ============ 38 · DECISION SUPPORT ============ -->
 <section class="card" data-section="Results">
   <div class="kicker">Results</div>
   <span class="pill">Preliminary — validation ongoing</span>
   <h2>What does it buy a decision maker?</h2>
   <div class="rule"></div>
-  <p><strong>Prioritise attention:</strong> ADAM's High-informativeness flag — <strong>81.0% precision / 69.9% recall</strong> — vs a simple FinBERT-negative rule at <strong>19.5%</strong> precision for High informativeness (the proxy trap).</p>
-  <p><strong>Route uncertainty:</strong> confidence below 0.80 sends <strong>56%</strong> of paragraphs to review, captures <strong>92.3%</strong> of ADAM's sentiment errors, and accuracy on the automated remainder rises to <strong>97.0%</strong>.</p>
+  <table class="data">
+    <tr><th>Decision-support payoff</th><th class="num">Value</th></tr>
+    <tr><td>High-informativeness flag — precision</td><td class="num">81.0%</td></tr>
+    <tr><td>High-informativeness flag — recall</td><td class="num">69.9%</td></tr>
+    <tr><td>FinBERT-negative rule — precision for High informativeness (the proxy trap)</td><td class="num">19.5%</td></tr>
+    <tr><td>Paragraphs routed to review (confidence &lt; 0.80)</td><td class="num">56%</td></tr>
+    <tr><td>Of ADAM's sentiment errors, captured by review</td><td class="num">92.3%</td></tr>
+    <tr><td>Accuracy on the automated remainder</td><td class="num">97.0%</td></tr>
+  </table>
   <p><strong>Trace the reasoning:</strong> a complete evidence record for all 300 cases — paragraph → agents → context → rationale.</p>
   <div class="callout"><p>The DSS value is <strong>selective attention + traceability + review routing</strong> — not simply a higher sentiment score.</p></div>
-  <p class="fine">Every number on this card is preliminary. Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
+  <p class="fine">Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
 </section>
 
-<!-- ============ 37 · THREE TAKEAWAYS ============ -->
+<!-- ============ 39 · THREE TAKEAWAYS ============ -->
 <section class="card" data-section="Finish">
   <div class="kicker">Takeaways</div>
   <h2>Three takeaways</h2>
@@ -718,7 +760,7 @@ footer.controls .btn.small{padding:11px 14px}
   <div class="callout"><p>Close with the design insight — not the accuracy number.</p></div>
 </section>
 
-<!-- ============ 38 · WHAT'S NEXT + QUESTIONS ============ -->
+<!-- ============ 40 · WHAT'S NEXT + QUESTIONS ============ -->
 <section class="card" data-section="Finish">
   <div class="kicker">Finish · What's next</div>
   <h2>What happens next — and questions</h2>
@@ -769,9 +811,14 @@ var NOTES = {
   20: "<b>Card 20 — FinBERT.</b> FinBERT reads the sentence, not the words. The 0.62 example (card 22) is the pivot: a clear label can still carry a low confidence.",
   26: "<b>Card 26 — ADAM.</b> Agentic = specialised roles + structured evidence + explicit coordination — not “an LLM does everything”, and not a vote.",
   33: "<b>Card 33 — Results.</b> Start with the humans: reviewers agreed unanimously only 21% / 25% / 32% of the time. Every number from here on is preliminary — say the label out loud.",
-  37: "<b>Card 37 — Takeaways.</b> Close with the design insight, not the accuracy number. Then questions."
+  34: "<b>Card 34 — Sentiment.</b> Row by row, top to bottom. LM 37.3%: the dictionary barely beats chance on three-way sentiment, because it counts words without context. FinBERT 60.7%: context helps a lot, but it is still a single reader — and the ensemble 58.7% actually falls <i>below</i> FinBERT, because averaging two disagreeing readers throws evidence away. ADAM 82.7% / F1 0.745: point at the highlighted row — the gain is architectural, coordinate the evidence instead of averaging it. Say the PRELIMINARY label out loud before moving on.",
+  35: "<b>Card 35 — Direction vs informativeness.</b> Two rows, same ADAM, two different jobs. Direction 83.3% / F1 0.689: point out precision 0.757 beats recall 0.647 — when ADAM calls a direction it is usually right, but it misses some. Informativeness 71.4% / F1 0.607: the lowest row on the card and the hardest construct — whether a paragraph tells an investor something new depends on context outside the paragraph. Say next: a paragraph can be linguistically neutral, economically adverse, and highly informative at once, and ADAM keeps those three answers separate.",
+  36: "<b>Card 36 — Disagreement.</b> Slow down — this is the key analysis. First the 162 of 300 (54%): more than half the sample is a disagreement case, not an edge case. Row by row: LM collapses to 25.3% here — below chance, because when it disagrees it is usually the wrong one; the ensemble 64.8% and FinBERT 68.5% do better, but ADAM 76.5% / F1 0.703 is the only one that adjudicates instead of picking a side. Then the callout: where both base models were wrong (77 paragraphs), ADAM is still right 89.6% of the time — that is the payoff of the Context &amp; Quality evidence. Say next: disagreement is not noise, it is where coordination earns its keep.",
+  37: "<b>Card 37 — Architecture test.</b> Three rows, same adjudicator, more evidence each time — that is the whole experiment. The sentiment and direction columns barely move (82.0 → 82.0 → 82.7; 84.0 → 83.7 → 83.3): point at them and say the LLM was already doing that work. The informativeness column is the story: F1 0.453 → 0.469 → 0.607, Δ +.138 vs Base and +.154 vs Judge-only, both statistically significant. Say the honest line out loud: Judge-only already reaches 82.0% sentiment and 84.0% direction — the proven architectural gain is informativeness only.",
+  38: "<b>Card 38 — Decision support.</b> Three payoffs, row by row. The flag rows: 81.0% precision means four in five flagged paragraphs really are highly informative, vs 19.5% for the FinBERT-negative shortcut — that shortcut is the proxy trap, never use a sentiment label as an importance label. The routing rows: confidence below 0.80 sends 56% to review and catches 92.3% of ADAM's errors, leaving the automated remainder at 97.0% — say that the review budget buys the accuracy. Close with the traceability line: every one of the 300 cases carries a complete evidence record, paragraph → agents → context → rationale.",
+  39: "<b>Card 39 — Takeaways.</b> Close with the design insight, not the accuracy number. Then questions."
 };
-var SECTION_OPENER = {"Title":1,"Authors":2,"The research premise":3,"Study data":7,"The 10-K":9,"LM Dictionary":12,"FinBERT":20,"ADAM":26,"Results":33,"Finish":37};
+var SECTION_OPENER = {"Title":1,"Authors":2,"The research premise":3,"Study data":7,"The 10-K":9,"LM Dictionary":12,"FinBERT":20,"ADAM":26,"Results":33,"Finish":39};
 
 function show(i){
   if(i < 0) i = 0;
