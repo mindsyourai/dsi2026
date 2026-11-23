@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Model Disagreement to Disclosure Intelligence — ADAM · DSI 2026</title>
+<meta name="description" content="Presentation deck: From Model Disagreement to Disclosure Intelligence (ADAM, DSI 2026). 38 cards, presenter-ready.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-deep:#0e1230; --navy:#1d2657; --navy-soft:#232c66;
+  --gold:#f2b33d; --gold-dark:#a86e06; --cream:#f5efe1; --cream-2:#efe6d0;
+  --ink:#1c2340; --muted:#5b6378; --line:#ddd2b8;
+  --green:#1d9e62; --green-soft:#dcf4e5; --red:#cf3f3f; --red-soft:#fbe3e3;
+  --blue:#4f6df5;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--navy-deep); color:var(--ink);
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  min-height:100vh; display:flex; flex-direction:column;
+}
+h1,h2,h3{font-family:"Fraunces",Georgia,"Times New Roman",serif; color:var(--navy); line-height:1.08; margin:.1em 0 .35em}
+h1{font-size:clamp(2.1rem,6vw,4rem); font-weight:700}
+h2{font-size:clamp(1.7rem,4.2vw,2.7rem); font-weight:700}
+h3{font-size:clamp(1.15rem,2.4vw,1.5rem)}
+p,li{font-size:clamp(1.05rem,2.2vw,1.35rem); line-height:1.5}
+li{margin:.35em 0}
+ul,ol{padding-left:1.25em; margin:.4em 0}
+strong{color:var(--navy)}
+a{color:var(--navy); text-decoration-color:var(--gold); text-underline-offset:3px}
+small,.fine{font-size:.85em; color:var(--muted)}
+/* ---------- header / progress ---------- */
+header.topbar{
+  display:flex; align-items:center; gap:14px; padding:12px 20px 8px;
+  color:#f4edd9; flex-wrap:wrap;
+}
+.brand{font-weight:800; letter-spacing:.14em; font-size:.85rem; text-transform:uppercase; color:var(--gold)}
+.seclabel{font-size:.95rem; color:#c9cfe6}
+.progress{flex:1 1 160px; height:8px; background:#232c66; border-radius:99px; overflow:hidden; min-width:120px}
+.progress i{display:block; height:100%; width:2.56%; background:var(--gold); border-radius:99px; transition:width .25s ease}
+.counter{font-variant-numeric:tabular-nums; font-weight:700; color:#f4edd9; white-space:nowrap}
+/* ---------- stage & cards ---------- */
+main.stage{flex:1; display:flex; align-items:center; justify-content:center; padding:10px 16px 18px; position:relative}
+.card{
+  display:none; width:min(1120px,96vw); min-height:min(62vh,640px);
+  background:var(--cream); border-radius:18px; padding:clamp(22px,4vw,54px) clamp(22px,4.5vw,60px);
+  box-shadow:0 18px 60px rgba(0,0,0,.45); border-top:8px solid var(--gold);
+}
+.card.active{display:block; animation:fade .22s ease}
+@keyframes fade{from{opacity:.35; transform:translateY(6px)} to{opacity:1; transform:none}}
+.kicker{font-size:.85rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:6px}
+.lede{font-size:clamp(1.15rem,2.5vw,1.5rem); line-height:1.45; color:#2a3358}
+.rule{height:3px; width:72px; background:var(--gold); border-radius:2px; margin:14px 0 18px}
+.pill{
+  display:inline-block; font-size:.8rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+  background:#7a1f1f; color:#fff; border-radius:99px; padding:5px 12px; margin-bottom:10px;
+}
+.pill.gold{background:var(--gold); color:#231a02}
+.statgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:18px 0}
+.stat{background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px 14px; text-align:center}
+.stat b{display:block; font-size:clamp(1.6rem,3.6vw,2.4rem); color:var(--navy); font-variant-numeric:tabular-nums}
+.stat span{font-size:.95rem; color:var(--muted); line-height:1.35; display:block; margin-top:4px}
+table.data{width:100%; border-collapse:collapse; margin:16px 0; font-size:clamp(.98rem,2vw,1.2rem); background:#fff; border-radius:12px; overflow:hidden}
+table.data th,table.data td{padding:11px 14px; text-align:left; border-bottom:1px solid var(--line)}
+table.data th{background:var(--navy); color:#f4edd9; font-size:.92em; letter-spacing:.04em}
+table.data tr.hl td{background:#fbeecd; font-weight:700}
+table.data td.num,table.data th.num{text-align:right; font-variant-numeric:tabular-nums}
+.callout{background:#fff; border-left:6px solid var(--gold); border-radius:10px; padding:14px 18px; margin:16px 0}
+.callout.navy{border-left-color:var(--navy); background:#e9ebf7}
+.callout.green{border-left-color:var(--green); background:var(--green-soft)}
+.callout.red{border-left-color:var(--red); background:var(--red-soft)}
+.callout p{margin:.3em 0}
+.bigmath{font-size:clamp(1.25rem,3vw,1.9rem); font-weight:800; color:var(--navy); text-align:center; background:#fff; border:2px solid var(--gold); border-radius:14px; padding:16px 12px; margin:18px 0; line-height:1.5}
+.bigmath .eq{color:var(--gold-dark)}
+.two-col{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+@media (max-width:760px){ .two-col{grid-template-columns:1fr} .versus{grid-template-columns:1fr !important} .card{min-height:0} }
+.tagrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+.tag{background:var(--navy); color:#f4edd9; border-radius:99px; padding:6px 14px; font-size:.92rem; font-weight:600}
+.tag.gold{background:var(--gold); color:#231a02}
+.versus{display:grid; grid-template-columns:1fr auto 1fr; gap:12px; align-items:center; margin:16px 0}
+.versus .box{background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px; text-align:center}
+.versus .box b{font-size:clamp(1.2rem,2.6vw,1.6rem); display:block}
+.vs{font-weight:800; color:var(--gold-dark); font-size:1.1rem}
+.neg{color:#a11f1f} .pos{color:#14663f}
+/* ---------- interactive elements ---------- */
+.btn{
+  appearance:none; border:0; cursor:pointer; font:inherit; font-weight:700; border-radius:99px;
+  padding:12px 22px; background:var(--navy); color:#fff;
+}
+.btn:hover{background:var(--navy-soft)}
+.btn.gold{background:var(--gold); color:#231a02}
+.btn.ghost{background:transparent; color:var(--navy); border:2px solid var(--navy)}
+.btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+.opt{
+  display:block; width:100%; text-align:left; margin:8px 0; padding:13px 16px; font-size:1.1rem;
+  background:#fff; border:2px solid var(--line); border-radius:12px; cursor:pointer; font-family:inherit; color:var(--ink);
+}
+.opt:hover{border-color:var(--navy)}
+.opt:disabled{cursor:default; opacity:.85}
+.opt.correct{border-color:var(--green); background:var(--green-soft)}
+.opt.wrong{border-color:var(--red); background:var(--red-soft)}
+.reveal{display:none; margin-top:14px}
+.reveal.show{display:block}
+.lmw{
+  appearance:none; border:1px solid transparent; background:transparent; cursor:pointer; font:inherit;
+  font-size:1.08rem; padding:3px 7px; margin:2px 1px; border-radius:8px; color:var(--ink);
+}
+.lmw:hover{background:#e9ebf7}
+.lmw.sel-pos{background:var(--green-soft); color:#14663f; font-weight:700; border-color:var(--green)}
+.lmw.sel-neg{background:var(--red-soft); color:#a11f1f; font-weight:700; border-color:var(--red)}
+.lmw.sel-none{background:#eee; color:#999; text-decoration:line-through; border-color:#ccc}
+.scorebox{background:var(--navy); color:#f4edd9; border-radius:12px; padding:13px 16px; margin-top:14px; font-size:1.08rem; line-height:1.6}
+.scorebox b{color:var(--gold)}
+.hintline{margin-top:12px; font-weight:600; min-height:1.4em}
+/* ---------- footer / notes / zones ---------- */
+.notes{
+  display:none; max-width:1120px; width:96vw; margin:0 auto 10px; background:#232c66; color:#f4edd9;
+  border:1px solid var(--gold); border-radius:12px; padding:12px 18px; font-size:1rem; line-height:1.5;
+}
+body.notes-on .notes{display:block}
+.notes b{color:var(--gold)}
+footer.controls{
+  display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
+  padding:0 16px 18px;
+}
+footer.controls .btn{padding:11px 20px}
+footer.controls .btn.small{padding:11px 14px}
+.zone{
+  position:fixed; top:50%; transform:translateY(-50%); z-index:5; width:52px; height:120px;
+  display:none; align-items:center; justify-content:center; cursor:pointer; color:#c9cfe6;
+  font-size:2rem; background:rgba(35,44,102,.55); border-radius:12px; border:0;
+}
+.zone:hover{background:rgba(35,44,102,.9); color:var(--gold)}
+.zone.left{left:10px} .zone.right{right:10px}
+@media (hover:hover) and (min-width:1250px){ .zone{display:flex} }
+.titlecard{text-align:left}
+.titlecard h1{margin-top:8px}
+.subtitle{font-size:clamp(1.2rem,2.8vw,1.7rem); color:#2a3358; line-height:1.4}
+.center{text-align:center}
+@media print{
+  body{background:#fff}
+  header.topbar, footer.controls, .zone, .notes{display:none !important}
+  main.stage{display:block; padding:0}
+  .card{display:block !important; box-shadow:none; border:1px solid #999; page-break-after:always; width:100%; min-height:0}
+}
+@media (prefers-reduced-motion:reduce){ .card.active{animation:none} .progress i{transition:none} }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <span class="brand">ADAM · DSI 2026</span>
+  <span class="seclabel" id="seclabel">Title</span>
+  <div class="progress" aria-hidden="true"><i id="progbar"></i></div>
+  <span class="counter" id="counter">Card 1 of 38</span>
+</header>
+
+<main class="stage" id="stage">
+<button class="zone left" id="zonePrev" aria-label="Previous card">‹</button>
+<button class="zone right" id="zoneNext" aria-label="Next card">›</button>
+
+<!-- ============ 1 · TITLE ============ -->
+<section class="card active titlecard" data-section="Title">
+  <div class="kicker">DSI 2026 · University of Tulsa</div>
+  <h1>From Model Disagreement<br>to Disclosure Intelligence</h1>
+  <p class="subtitle">ADAM — an agentic decision support system for financial narratives.</p>
+  <div class="rule"></div>
+  <p class="lede">When two credible methods disagree about the same paragraph, don't average the disagreement away. Diagnose it.</p>
+  <p>Kazim Topuz (presenter) · Jessica Bedson · Tally Ferguson · Thomas Kim</p>
+  <div class="tagrow"><span class="tag gold">38 cards</span><span class="tag">~20–22 minutes</span><span class="tag">Use → to advance</span></div>
+</section>
+
+<!-- ============ 2 · AUTHORS ============ -->
+<section class="card" data-section="Authors">
+  <div class="kicker">Authors</div>
+  <h2>The authors</h2>
+  <div class="rule"></div>
+  <ul>
+    <li><strong>Kazim Topuz</strong> — presenter, University of Tulsa</li>
+    <li><strong>Jessica Bedson</strong> — University of Tulsa</li>
+    <li><strong>Tally Ferguson</strong> — University of Tulsa</li>
+    <li><strong>Thomas Kim</strong> — University of Tulsa</li>
+  </ul>
+  <p>Presented at <strong>DSI 2026</strong>. Contact: <strong>Kazim-Topuz@utulsa.edu</strong></p>
+  <div class="callout"><p>This is a <strong>decision support</strong> talk, not a sentiment-classifier talk. The question throughout: which passages deserve a human's attention — and why?</p></div>
+</section>
+
+<!-- ============ 3 · DECISION PROBLEM ============ -->
+<section class="card" data-section="The research premise">
+  <div class="kicker">The research premise</div>
+  <h2>The decision problem: finding what matters inside a 10-K</h2>
+  <div class="rule"></div>
+  <div class="statgrid">
+    <div class="stat"><b>Volume</b><span>Narrative sections are long and costly to review paragraph by paragraph.</span></div>
+    <div class="stat"><b>Repetition</b><span>Material language is mixed with prior-year carryover, boilerplate, and legal caution.</span></div>
+    <div class="stat"><b>Interpretive difficulty</b><span>Tone, economic direction, and informativeness are <em>not</em> the same construct.</span></div>
+  </div>
+  <div class="callout navy"><p><strong>The practical DSS question:</strong> which passages contain new, firm-specific, decision-relevant information — and which passages require closer human judgment?</p></div>
+</section>
+
+<!-- ============ 4 · MOTIVATION ============ -->
+<section class="card" data-section="The research premise">
+  <div class="kicker">The research premise · Motivation</div>
+  <h2>Why this is hard: volume, repetition, and three different things</h2>
+  <div class="rule"></div>
+  <ul>
+    <li><strong>Volume.</strong> Annual reports are long; a decision maker must find a small number of consequential passages inside lengthy filings.</li>
+    <li><strong>Repetition / boilerplate.</strong> Some negative language is routine risk-factor boilerplate, repeated year after year.</li>
+    <li><strong>Tone ≠ economics ≠ informativeness.</strong> Some neutral language describes a genuinely adverse event. A paragraph can sound negative, describe no real economic harm, and carry no new information — all at once.</li>
+  </ul>
+  <div class="callout"><p>The DSS challenge: distinguish <strong>tone</strong>, <strong>economic implication</strong>, and <strong>incremental informativeness</strong> — while keeping enough evidence for a human to inspect the result.</p></div>
+</section>
+
+<!-- ============ 5 · RESEARCH GAP ============ -->
+<section class="card" data-section="The research premise">
+  <div class="kicker">The research premise · Research gap</div>
+  <h2>Why existing financial-text approaches are not enough</h2>
+  <div class="rule"></div>
+  <ol>
+    <li><strong>Partial views.</strong> LM is transparent but context-blind. FinBERT reads semantic context but is less directly traceable. Readability measures answer a different question.</li>
+    <li><strong>Missing disclosure context.</strong> Standalone sentiment methods do not tell us whether language is new, persistent, peer-common, firm-specific, or boilerplate.</li>
+    <li><strong>False precision.</strong> A single class or score can hide genuine conflict — and gives users little guidance about where interpretation is difficult or why.</li>
+  </ol>
+  <div class="callout navy"><p><strong>The gap in DSS design:</strong> how should heterogeneous analytical evidence be coordinated when credible methods produce complementary or conflicting signals?</p></div>
+  <p class="fine">Loughran &amp; McDonald (2011); Araci (2019); Bochkay et al. (2023); Brown &amp; Tucker (2011).</p>
+</section>
+
+<!-- ============ 6 · RQs & DRs ============ -->
+<section class="card" data-section="The research premise">
+  <div class="kicker">The research premise</div>
+  <h2>Four questions, four design requirements</h2>
+  <div class="rule"></div>
+  <div class="two-col">
+    <div>
+      <h3>Research questions</h3>
+      <ul>
+        <li><strong>RQ1</strong> — How can a DSS coordinate lexicon, transformer, and contextual-quality evidence?</li>
+        <li><strong>RQ2</strong> — Does agentic adjudication improve interpretation, and is the gain architectural?</li>
+        <li><strong>RQ3</strong> — What explains disagreement, and does it identify passages needing review?</li>
+        <li><strong>RQ4</strong> — Are confidence-aware outputs useful for prioritisation and economically relevant?</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Design requirements</h3>
+      <ul>
+        <li><strong>DR1</strong> — Preserve heterogeneous evidence</li>
+        <li><strong>DR2</strong> — Diagnose disagreement</li>
+        <li><strong>DR3</strong> — Qualify signals with temporal / disclosure context</li>
+        <li><strong>DR4</strong> — Maintain traceability to source text</li>
+      </ul>
+      <p class="fine">Each question has a requirement that forces the design to take it seriously.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 · STUDY DATA ============ -->
+<section class="card" data-section="Study data">
+  <div class="kicker">Study data</div>
+  <h2>The study data: 10 years, 11 sectors</h2>
+  <div class="rule"></div>
+  <div class="statgrid">
+    <div class="stat"><b>55</b><span>firms — 5 per GICS sector</span></div>
+    <div class="stat"><b>11</b><span>GICS sectors</span></div>
+    <div class="stat"><b>550</b><span>firm-year 10-Ks, 2016–2025</span></div>
+  </div>
+  <div class="bigmath">143,372 focal paragraphs (2016–2025)<br>+ 32,407 historical context (2014–2015)<br><span class="eq">= 175,779 paragraphs in total (≈176k)</span></div>
+  <p>Focal paragraphs come from <strong>Item 1A and Item 7</strong> — no per-item split is stated here. The 2014–2015 filings serve <strong>only as historical context</strong>, to initialise the longitudinal measures, so the system can tell what is new from what is carried over.</p>
+</section>
+
+<!-- ============ 8 · HUMAN REFERENCE SET ============ -->
+<section class="card" data-section="Study data">
+  <div class="kicker">Study data</div>
+  <h2>How we know what's right: the human reference set</h2>
+  <div class="rule"></div>
+  <div class="statgrid">
+    <div class="stat"><b>300</b><span>paragraphs — 144 Item 1A, 156 Item 7</span></div>
+    <div class="stat"><b>3</b><span>independent reviewers per paragraph, blinded to all model outputs</span></div>
+    <div class="stat"><b>4</b><span>constructs annotated: sentiment, economic direction, informativeness, ambiguity</span></div>
+  </div>
+  <p>Reviewers saw the paragraph, surrounding text, and prior-year context — but <strong>no model outputs</strong>. The set covers 2016–2025 and all 11 sectors.</p>
+  <div class="callout navy"><p>Every result later in this talk is measured against these <strong>300 human-labelled paragraphs</strong>. (How much the reviewers themselves agreed — and what that tells us — comes with the results.)</p></div>
+</section>
+
+<!-- ============ 9 · WHAT A 10-K IS ============ -->
+<section class="card" data-section="The 10-K">
+  <div class="kicker">The 10-K · a short bridge</div>
+  <h2>What a 10-K is</h2>
+  <div class="rule"></div>
+  <ul>
+    <li>The <strong>annual report</strong> most U.S. public companies must file each year with the <strong>SEC</strong>.</li>
+    <li>The <strong>company writes it</strong>; the SEC sets the topics and their fixed order.</li>
+    <li>Anyone can read it <strong>for free on EDGAR</strong>, the SEC's public filing database.</li>
+    <li>It is <strong>not a marketing brochure</strong>: the CEO and CFO must <strong>certify its accuracy</strong>.</li>
+  </ul>
+  <div class="statgrid">
+    <div class="stat"><b>60 days</b><span>after fiscal year-end — large accelerated filers (public float ≥ $700m)</span></div>
+    <div class="stat"><b>75 days</b><span>accelerated filers</span></div>
+    <div class="stat"><b>90 days</b><span>all other registrants</span></div>
+  </div>
+</section>
+
+<!-- ============ 10 · THE FOUR ITEMS ============ -->
+<section class="card" data-section="The 10-K">
+  <div class="kicker">The 10-K</div>
+  <h2>The four Items that matter</h2>
+  <div class="rule"></div>
+  <ul>
+    <li><strong>Item 1 — Business:</strong> what the company does — products, services, subsidiaries, markets, competition, regulation, labour, costs, seasonality.</li>
+    <li><strong>Item 1A — Risk Factors:</strong> the most significant risks to the company and its securities, generally listed in order of importance. The risks themselves — not how the company plans to address them.</li>
+    <li><strong>Item 7 — MD&amp;A:</strong> management's own-words perspective — operations and results, liquidity and capital resources, known trends and uncertainties, material changes, critical accounting judgments.</li>
+    <li><strong>Item 8 — Financial Statements:</strong> the audited numbers — income statement, balance sheets, cash flows, stockholders' equity, plus notes, under GAAP, audited by an independent accountant.</li>
+  </ul>
+  <p class="fine">ADAM reads Items 1A and 7: narrative-heavy, with different linguistic baselines.</p>
+</section>
+
+<!-- ============ 11 · WHY 10-Ks ARE HARD ============ -->
+<section class="card" data-section="The 10-K">
+  <div class="kicker">The 10-K</div>
+  <h2>Why 10-Ks are hard: three problems</h2>
+  <div class="rule"></div>
+  <div class="versus" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="box"><b>Volume</b><br>Long narrative sections; paragraph-by-paragraph review is slow and costly.</div>
+    <div class="box"><b>Repetition</b><br>Material language mixed with prior-year carryover, boilerplate, and legal caution.</div>
+    <div class="box"><b>Interpretive difficulty</b><br>Tone ≠ economic direction ≠ informativeness.</div>
+  </div>
+  <div class="callout"><p>A paragraph can <strong>sound negative</strong>, describe <strong>no real economic harm</strong>, and carry <strong>no new information</strong> — all at once.</p></div>
+  <p>That is exactly the problem ADAM was built to attack — starting with the oldest tool in the box: the dictionary.</p>
+</section>
+
+<!-- ============ 12 · LM: WHAT A DICTIONARY IS ============ -->
+<section class="card" data-section="LM Dictionary">
+  <div class="kicker">LM Dictionary · the deep dive</div>
+  <h2>What a dictionary is: computers count</h2>
+  <div class="rule"></div>
+  <p class="lede">A dictionary method does not read. It <strong>counts words on a list</strong> — and divides by the total words in the passage.</p>
+  <p>Loughran &amp; McDonald (2011), <em>“When Is a Liability Not a Liability? Textual Analysis, Dictionaries, and 10-Ks”</em>, <em>Journal of Finance</em> 66(1), 35–65, built finance-specific word lists so that counting could work on 10-Ks at all.</p>
+  <div class="callout"><p>The LM agent in ADAM is exactly this: <strong>transparent word evidence</strong> — every point of its score traces to a specific word on a published list.</p></div>
+</section>
+
+<!-- ============ 13 · THE 73.8% TRAP ============ -->
+<section class="card" data-section="LM Dictionary">
+  <div class="kicker">LM Dictionary</div>
+  <h2>Why a general dictionary fails in finance: the ~73.8% trap</h2>
+  <div class="rule"></div>
+  <p class="lede">About <strong>73.8%</strong> — nearly three-fourths — of the negative word counts the Harvard-IV general dictionary produces in 10-Ks are words that are <strong>not negative in finance at all</strong>.</p>
+  <div class="tagrow"><span class="tag">tax</span><span class="tag">cost</span><span class="tag">capital</span><span class="tag">liability</span><span class="tag">board</span><span class="tag">vice</span></div>
+  <p>A tax is a fact of business, not a complaint. A board is a group of directors, not a piece of lumber.</p>
+  <p>It gets worse: <strong>mine, cancer, crude</strong> mark an <em>industry</em>, not an event — a mining company, a drug trial, an oil producer. A general dictionary reads the word and misses the world.</p>
+</section>
+
+<!-- ============ 14 · THE SIX LM LISTS ============ -->
+<section class="card" data-section="LM Dictionary">
+  <div class="kicker">LM Dictionary</div>
+  <h2>The six LM lists — and what the others measure</h2>
+  <div class="rule"></div>
+  <table class="data">
+    <tr><th>List</th><th class="num">Approx. size</th></tr>
+    <tr><td>Positive</td><td class="num">~354</td></tr>
+    <tr><td>Negative</td><td class="num">~2,337–2,355</td></tr>
+    <tr><td>Uncertainty</td><td class="num">~297</td></tr>
+    <tr><td>Litigious</td><td class="num">~904</td></tr>
+    <tr><td>Strong Modal</td><td class="num">19</td></tr>
+    <tr><td>Weak Modal</td><td class="num">27</td></tr>
+    <tr><td>Constraining*</td><td class="num">~184</td></tr>
+  </table>
+  <p><strong>Uncertainty</strong> — hedging, doubt, imprecision. <strong>Litigious</strong> — legal language. <strong>Constraining</strong> — language of financial constraints. <strong>Modal (strong / weak)</strong> — how forcefully something is asserted: <em>will, must</em> vs <em>could, may, might</em>.</p>
+  <p class="fine">*Constraining is a later addition (Bodnaruk, Loughran &amp; McDonald, 2015) — not in the original 2011 six, but the same family. Sizes are approximate and version-dependent.</p>
+</section>
+
+<!-- ============ 15 · THE FORMULA ============ -->
+<section class="card" data-section="LM Dictionary">
+  <div class="kicker">LM Dictionary</div>
+  <h2>The formula: LM's own measures are proportions</h2>
+  <div class="rule"></div>
+  <div class="bigmath">% Positive = Positive ÷ total words<br>% Negative = Negative ÷ total words<br><span class="eq">Net LM tone = (Positive − Negative) ÷ total words</span></div>
+  <p>Per 1,000 words is the <strong>same measure rescaled</strong>: (count ÷ total words) × 1,000 — not a separate formula.</p>
+  <div class="callout red"><p><strong>Do not confuse it with Henry's measure.</strong> (Positive − Negative) ÷ (Positive + Negative) — range −1 to +1 — is <strong>Henry (2008)</strong>'s tone measure, widely used <em>with</em> LM lists, but it is <strong>not LM 2011's formula</strong>. In the worked example two cards ahead (5 positive, 6 negative words), Henry's measure gives (5−6)/(5+6) = <strong>−0.091</strong> — same sign as LM's −0.02, different magnitude — which is why the formula matters as much as the words.</p></div>
+</section>
+
+<!-- ============ 16 · INTERACTIVE WORKED EXAMPLE ============ -->
+<section class="card" data-section="LM Dictionary">
+  <div class="kicker">LM Dictionary · Interactive example</div>
+  <h2>You be the counter: 50 words, two lists, one net tone</h2>
+  <div class="rule"></div>
+  <p><strong>Tap every word you think is on an LM list</strong> — Positive or Negative. The counts recompute live. Then reveal the answer.</p>
+  <div class="lm-game" id="lm-teach">
+    <div class="lm-words"></div>
+    <div class="scorebox">Positive: <b>0</b> · Negative: <b>0</b><br>%Pos: <b>0.0%</b> · %Neg: <b>0.0%</b><br>Net LM tone: <b>0.00</b> · Net per 1,000 words: <b>0</b></div>
+    <p class="hintline"></p>
+    <div class="btnrow">
+      <button type="button" class="btn gold lm-reveal">Reveal the answer</button>
+      <button type="button" class="btn ghost lm-reset">Reset</button>
+    </div>
+  </div>
+  <p class="fine">Teaching passage, 50 words, written in 10-K style. “Expects” is <em>not</em> an LM Positive word; “operations” appears twice and is on neither list.</p>
+</section>
+
+<!-- ============ 17 · WHERE LM GOES WRONG (1) ============ -->
+<section class="card" data-section="LM Dictionary">
+  <div class="kicker">LM Dictionary</div>
+  <h2>Where LM goes wrong (1): negation &amp; legal language</h2>
+  <div class="rule"></div>
+  <div class="callout"><p><em>“The company is <strong>not expected to</strong> face a material <strong>loss</strong> from the pending <strong>litigation</strong> this year.”</em></p></div>
+  <div class="versus">
+    <div class="box"><b class="neg">LM says: NEGATIVE</b><br>It matched the list words “loss” and “litigation”.</div>
+    <div class="vs">vs</div>
+    <div class="box"><b>FinBERT says: NEUTRAL</b><br>It read “not expected to” as negation.</div>
+  </div>
+  <ul>
+    <li><strong>Negation defeats counting.</strong> “Not expected to face a loss” still counts “loss” as negative.</li>
+    <li><strong>Litigious ≠ distress.</strong> Legal words describe a legal process, not necessarily a company in trouble.</li>
+  </ul>
+  <p>Both readings are understandable — they respond to different properties of the text. That is the point of the whole talk.</p>
+</section>
+
+<!-- ============ 18 · WHERE LM GOES WRONG (2) ============ -->
+<section class="card" data-section="LM Dictionary">
+  <div class="kicker">LM Dictionary</div>
+  <h2>Where LM goes wrong (2): boilerplate, conditionals, mixed news</h2>
+  <div class="rule"></div>
+  <ul>
+    <li><strong>Boilerplate.</strong> A risk paragraph repeated unchanged for five years scores exactly the same as one written yesterday. LM cannot tell fresh news from carryover.</li>
+    <li><strong>Conditionality.</strong> <em>Could / may / if</em> change what a sentence commits to — the count does not move.</li>
+    <li><strong>Mixed statements.</strong> Bad history plus a good outlook in one sentence: one net number hides both halves.</li>
+    <li><strong>Factual events with neutral wording.</strong> A genuinely adverse event described in flat, factual language scores near zero — while routine risk language scores as “negative”.</li>
+  </ul>
+  <div class="callout"><p>A dictionary sees <strong>words</strong>, not sentences — and not years, peers, or context.</p></div>
+</section>
+
+<!-- ============ 19 · LM'S HONEST VERDICT ============ -->
+<section class="card" data-section="LM Dictionary">
+  <div class="kicker">LM Dictionary</div>
+  <h2>LM's honest verdict</h2>
+  <div class="rule"></div>
+  <div class="two-col">
+    <div class="callout green"><p><strong>Strength: transparent and auditable.</strong> Every point of the score traces to a specific word on a published list. If you disagree, open the list and argue about the word. No black box, no mystery weights.</p></div>
+    <div class="callout red"><p><strong>Limit: context-blind.</strong> It counts words, not sentences. Negation, legal language, boilerplate, conditionality, and mixed statements all defeat it in different ways.</p></div>
+  </div>
+  <p class="lede">That is why ADAM keeps LM as <strong>one agent among three</strong> — never as the whole verdict. Its evidence is real, but it is lexical evidence only, and the adjudicator needs to know what it cannot see.</p>
+</section>
+
+<!-- ============ 20 · FINBERT: WHAT IT IS ============ -->
+<section class="card" data-section="FinBERT">
+  <div class="kicker">FinBERT · alone, not mixed with ADAM</div>
+  <h2>FinBERT: a model that reads the sentence</h2>
+  <div class="rule"></div>
+  <p class="lede">FinBERT (Araci, 2019) — <em>“FinBERT: Financial Sentiment Analysis with Pre-trained Language Models”</em>, arXiv:1908.10063.</p>
+  <ul>
+    <li>Starts from <strong>BERT</strong> and keeps training it on finance text (a Reuters TRC2 financial subset).</li>
+    <li>Then fine-tunes it for sentiment on the <strong>Financial PhraseBank</strong> (Malo et al., 2014): <strong>4,845 sentences</strong> of financial news, labelled by annotators.</li>
+  </ul>
+  <div class="callout"><p><strong>Note the venue:</strong> an arXiv preprint and MSc thesis from the University of Amsterdam — <em>not</em> a peer-reviewed journal paper — and it still became the standard finance sentiment model.</p></div>
+</section>
+
+<!-- ============ 21 · HOW FINBERT WORKS ============ -->
+<section class="card" data-section="FinBERT">
+  <div class="kicker">FinBERT</div>
+  <h2>How it works: softmax → argmax → confidence</h2>
+  <div class="rule"></div>
+  <p>FinBERT reads the <strong>whole sentence at once</strong>: word order, negation, and context all shape its judgment.</p>
+  <div class="bigmath">Softmax → P(Negative) · P(Neutral) · P(Positive)<br><span class="eq">Predicted class = argmax (the largest probability)<br>Confidence = max probability (how large that largest number is)</span></div>
+  <p>The three probabilities always sum to <strong>1.00</strong> — if they don't, something is wrong before you start.</p>
+</section>
+
+<!-- ============ 22 · FINBERT WORKED EXAMPLE ============ -->
+<section class="card" data-section="FinBERT">
+  <div class="kicker">FinBERT · Worked example</div>
+  <h2>Worked example: 0.62 is a weak kind of confident</h2>
+  <div class="rule"></div>
+  <p><em>“Revenue fell sharply as costs rose and demand weakened.”</em> Suppose FinBERT returns these probabilities — <strong>illustrative teaching values, not a real model run</strong>:</p>
+  <div class="statgrid">
+    <div class="stat"><b class="neg">0.62</b><span>P(Negative)</span></div>
+    <div class="stat"><b>0.30</b><span>P(Neutral)</span></div>
+    <div class="stat"><b class="pos">0.08</b><span>P(Positive)</span></div>
+  </div>
+  <p>Check: 0.62 + 0.30 + 0.08 = <strong>1.00</strong> ✓ &nbsp;·&nbsp; Predicted class = argmax = <strong>Negative</strong> &nbsp;·&nbsp; Confidence = max probability = <strong>0.62</strong>.</p>
+  <div class="callout red"><p><strong>Routes to human review.</strong> ADAM's review threshold is 0.80 — any paragraph below 0.80 goes to a human. At 0.62, this paragraph goes to review <em>even though its predicted class is clear</em>. A confident-sounding label and a low confidence number can live in the same output.</p></div>
+</section>
+
+<!-- ============ 23 · THE FRICTION + SIX REASONS ============ -->
+<section class="card" data-section="FinBERT">
+  <div class="kicker">FinBERT · The friction</div>
+  <h2>The friction: same sentence, two credible verdicts</h2>
+  <div class="rule"></div>
+  <div class="callout"><p><em>“The company is not expected to face a material loss from the pending litigation this year.”</em></p></div>
+  <div class="versus">
+    <div class="box"><b class="neg">LM says: NEGATIVE</b><br>Matched “loss” and “litigation”.</div>
+    <div class="vs">vs</div>
+    <div class="box"><b>FinBERT says: NEUTRAL</b><br>Read “not expected to” as negation.</div>
+  </div>
+  <p><strong>Six recurring reasons methods disagree</strong> — disagreement mechanisms, not random error:</p>
+  <ol>
+    <li><strong>Negation</strong> — “not expected to…”</li>
+    <li><strong>Legal language</strong> — litigious terms ≠ distress</li>
+    <li><strong>Boilerplate</strong> — repeated risk language</li>
+    <li><strong>Conditionality</strong> — could / may / if</li>
+    <li><strong>Mixed statements</strong> — bad history + good outlook</li>
+    <li><strong>Factual events</strong> — neutral wording, adverse economics</li>
+  </ol>
+  <p class="fine">Agreement does not guarantee correctness; disagreement does not necessarily imply ambiguity.</p>
+</section>
+
+<!-- ============ 24 · FINBERT STRENGTHS ============ -->
+<section class="card" data-section="FinBERT">
+  <div class="kicker">FinBERT</div>
+  <h2>FinBERT's strengths: semantic context</h2>
+  <div class="rule"></div>
+  <ul>
+    <li>It reads <em>“not expected to face a loss”</em> as <strong>reassurance</strong>, not as a loss — the exact sentence where LM fails.</li>
+    <li>Word order, negation, and context shape the judgment; a dictionary merely counts.</li>
+  </ul>
+  <div class="statgrid">
+    <div class="stat"><b>60.7%</b><span>FinBERT sentiment accuracy (preliminary)</span></div>
+    <div class="stat"><b>37.3%</b><span>LM dictionary sentiment accuracy (preliminary)</span></div>
+  </div>
+  <p class="fine"><span class="pill">Preliminary — validation ongoing</span><br>Evaluated on the 300-paragraph human reference set.</p>
+</section>
+
+<!-- ============ 25 · FINBERT LIMITS + BRIDGE ============ -->
+<section class="card" data-section="FinBERT">
+  <div class="kicker">FinBERT</div>
+  <h2>FinBERT's limits — so why not stop here?</h2>
+  <div class="rule"></div>
+  <div class="two-col">
+    <div class="callout red"><p><strong>Lower direct traceability.</strong> You get probabilities, not a word-by-word receipt. You cannot point at the single word that caused the score the way you can with LM.</p></div>
+    <div class="callout red"><p><strong>No disclosure context on its own.</strong> FinBERT cannot tell you whether the language is new or carried over from last year, common across the sector or specific to this firm, specific or boilerplate.</p></div>
+  </div>
+  <p class="lede">FinBERT is the better sentiment reader. But <strong>sentiment is not informativeness</strong> — and a sentiment model, however good, cannot see whether language is <strong>new or repeated</strong>, <strong>peer-common or firm-specific</strong>, <strong>specific or boilerplate</strong>, or <strong>why</strong> two credible methods disagree.</p>
+  <div class="callout navy"><p>To cross that boundary you need temporal and peer context — and something to <strong>coordinate the evidence</strong>. That something is ADAM. →</p></div>
+</section>
+
+<!-- ============ 26 · ADAM: THE AGENTIC IDEA ============ -->
+<section class="card" data-section="ADAM">
+  <div class="kicker">ADAM · the system</div>
+  <h2>ADAM: the agentic idea</h2>
+  <div class="rule"></div>
+  <p class="lede">LM + FinBERT + an LLM adjudicator — coordinated, not averaged.</p>
+  <div class="callout red"><p><strong>Not a vote.</strong> Not a three-way ensemble, and not “an LLM does everything”.</p></div>
+  <p><strong>Agentic</strong> means: specialised roles + structured evidence + explicit coordination. Three evidence agents produce <em>different kinds</em> of evidence, and an adjudicator reasons about their convergence and their conflict — keeping the disagreement visible instead of averaging it away.</p>
+  <div class="tagrow"><span class="tag">LM lexicon</span><span class="tag">FinBERT</span><span class="tag">Context &amp; Quality</span><span class="tag gold">+ LLM adjudicator</span></div>
+</section>
+
+<!-- ============ 27 · SIX LAYERS ============ -->
+<section class="card" data-section="ADAM">
+  <div class="kicker">ADAM</div>
+  <h2>Six layers, from disclosure to decision support</h2>
+  <div class="rule"></div>
+  <ol>
+    <li><strong>Disclosure &amp; Decision Context</strong> — 10-K Item 1A / Item 7 · firm / year / section / sector</li>
+    <li><strong>Structuring &amp; Contextualisation</strong> — section extraction · paragraph objects · prior-year / peer links</li>
+    <li><strong>Specialised Evidence Agents</strong> — LM lexicon · FinBERT · Context &amp; Quality</li>
+    <li><strong>Intelligent Adjudication</strong> — assess convergence · diagnose conflict · retain ambiguity</li>
+    <li><strong>Disclosure Intelligence Synthesis</strong> — paragraph → section → company-year measures</li>
+    <li><strong>Decision-Support Outputs</strong> — profiles · alerts · drill-down · explanations</li>
+  </ol>
+  <p class="fine">Layer 2 is what makes everything traceable: every paragraph stays linked to its firm, year, section, sector, prior-year context, peer context, and provenance.</p>
+</section>
+
+<!-- ============ 28 · THREE EVIDENCE AGENTS ============ -->
+<section class="card" data-section="ADAM">
+  <div class="kicker">ADAM</div>
+  <h2>Three evidence agents — deliberately non-equivalent roles</h2>
+  <div class="rule"></div>
+  <div class="statgrid">
+    <div class="stat"><b>LM Lexicon</b><span>Transparent, auditable word evidence: Positive / Negative, Uncertainty, Litigious, Constraining, Modal. Limit: weak semantic context.</span></div>
+    <div class="stat"><b>FinBERT</b><span>Finance-domain contextual sentiment: P(Negative), P(Neutral), P(Positive), predicted class, confidence. Limit: lower direct traceability.</span></div>
+    <div class="stat"><b>Context &amp; Quality</b><span>Qualifies informational significance: persistence / novelty, peer similarity / distinctiveness, specificity, boilerplate, hedging / negation / caution.</span></div>
+  </div>
+  <div class="callout"><p>The Context &amp; Quality Agent <strong>does not decide sentiment at all</strong> — it qualifies how much the language matters <em>here and now</em>. The outputs stay separate until adjudication.</p></div>
+</section>
+
+<!-- ============ 29 · CONTEXT & QUALITY ============ -->
+<section class="card" data-section="ADAM">
+  <div class="kicker">ADAM</div>
+  <h2>What the Context &amp; Quality Agent adds</h2>
+  <div class="rule"></div>
+  <ul>
+    <li><strong>Year-over-year similarity</strong> — is the language substantially carried over from last year?</li>
+    <li><strong>Multi-year persistence</strong> — does similar language persist across the last two years?</li>
+    <li><strong>Temporal novelty</strong> — is comparable language absent from recent disclosure history?</li>
+    <li><strong>Peer commonality / distinctiveness</strong> — is the language common within the sector, or unusually firm-specific?</li>
+    <li><strong>Specificity</strong> — does the passage contain concrete, firm-specific details?</li>
+    <li><strong>Boilerplate / linguistic qualifiers</strong> — is the passage repetitive, generic, hedged, conditional, negated, or legally cautious?</li>
+  </ul>
+  <div class="callout navy"><p>Sentiment answers <strong>“what is the tone?”</strong>; context answers <strong>“how informative is this language here and now?”</strong></p></div>
+</section>
+
+<!-- ============ 30 · ADJUDICATION ============ -->
+<section class="card" data-section="ADAM">
+  <div class="kicker">ADAM</div>
+  <h2>Adjudication separates what other systems collapse</h2>
+  <div class="rule"></div>
+  <p>The adjudicator returns <strong>separate fields</strong>, not one score:</p>
+  <div class="tagrow"><span class="tag">Sentiment: Positive · Negative · Neutral</span><span class="tag">Economic direction: Favourable · Adverse · Mixed · No clear direction</span><span class="tag">Informativeness: High · Medium · Low</span><span class="tag gold">Status: confidence · ambiguity · review needed</span></div>
+  <p style="margin-top:16px">A sentence can be <strong>linguistically neutral, economically adverse, and highly informative</strong> — all at once. ADAM preserves those distinctions.</p>
+  <p>The adjudicator asks: do the signals converge? If not, what explains the conflict — and is the remaining evidence sufficient for a coherent interpretation?</p>
+  <div class="callout navy"><p>Market outcomes are <strong>not</strong> observed by the adjudicator — they are reserved for external validation.</p></div>
+</section>
+
+<!-- ============ 31 · SIX DISCREPANCY CATEGORIES ============ -->
+<section class="card" data-section="ADAM">
+  <div class="kicker">ADAM</div>
+  <h2>When the agents disagree, diagnose why: six categories</h2>
+  <div class="rule"></div>
+  <ol>
+    <li><strong>No meaningful conflict</strong></li>
+    <li><strong>Lexical–semantic mismatch</strong></li>
+    <li><strong>Boilerplate / generic language</strong></li>
+    <li><strong>Factual event vs neutral wording</strong></li>
+    <li><strong>Conditional / negated / mixed language</strong></li>
+    <li><strong>Unresolved evidence</strong></li>
+  </ol>
+  <p>Worked case: <em>“not expected to face a material loss from the pending litigation”</em> — LM NEGATIVE, FinBERT NEUTRAL → diagnosis <strong>conditional / negated language</strong>. The disagreement is resolvable once the negation is seen, and the paragraph is not the distress signal LM's count suggests.</p>
+  <p class="fine">Agreement does not guarantee correctness; disagreement does not necessarily imply ambiguity.</p>
+</section>
+
+<!-- ============ 32 · INTERACTIVE: YOU BE THE ADJUDICATOR ============ -->
+<section class="card" data-section="ADAM">
+  <div class="kicker">ADAM · Interactive</div>
+  <h2>You be the adjudicator — vote A, B, or C</h2>
+  <div class="rule"></div>
+  <div class="callout"><p><em>“The company is not expected to face a material loss from the pending litigation this year.”</em></p></div>
+  <div class="versus">
+    <div class="box"><b class="neg">LM says: NEGATIVE</b><br>Matched “loss” and “litigation”.</div>
+    <div class="vs">vs</div>
+    <div class="box"><b>FinBERT says: NEUTRAL</b><br>Read “not expected to” as negation.</div>
+  </div>
+  <p><strong>Your call — which discrepancy category is this?</strong></p>
+  <div class="quiz" id="adj-game">
+    <button type="button" class="opt" data-correct="false">A — No meaningful conflict</button>
+    <button type="button" class="opt" data-correct="true">B — Conditional / negated language</button>
+    <button type="button" class="opt" data-correct="false">C — Unresolved evidence</button>
+  </div>
+  <div class="reveal" id="adj-game-reveal">
+    <div class="callout green"><p><strong>B — Conditional / negated language.</strong> LM matched a negative word; FinBERT read the negation. The adjudicator calls it conditional / negated language — and does not return one overloaded score: linguistic sentiment, economic direction, informativeness, and status (confidence, ambiguity, review needed) stay separate.</p></div>
+  </div>
+  <p class="fine">Ask the room to vote first, then tap the answer to reveal it.</p>
+</section>
+
+<!-- ============ 33 · EVALUATION DESIGN + HUMAN AGREEMENT ============ -->
+<section class="card" data-section="Results">
+  <div class="kicker">Results · How the numbers were earned</div>
+  <span class="pill">Preliminary — validation ongoing</span>
+  <h2>First, how hard is the task? Ask the humans.</h2>
+  <div class="rule"></div>
+  <p>On the 300-paragraph reference set, unanimous agreement among the three reviewers was only:</p>
+  <div class="statgrid">
+    <div class="stat"><b>21%</b><span>linguistic sentiment (66% two-of-three, 13% all differ)</span></div>
+    <div class="stat"><b>25%</b><span>economic direction (64% two-of-three, 11% all differ)</span></div>
+    <div class="stat"><b>32%</b><span>informativeness (54% two-of-three, 14% all differ)</span></div>
+  </div>
+  <p>That is not (only) annotation noise — it is a signal that the task is <strong>genuinely difficult</strong>. Interpretive disagreement becomes an empirical signal of task difficulty.</p>
+  <p><strong>Evaluation design:</strong> the same adjudicator is tested with progressively more evidence — Judge-only (paragraph only) → Base evidence (+ LM + FinBERT) → Full ADAM (+ Context &amp; Quality) — against conventional benchmarks (LM, FinBERT, LM–FinBERT ensemble). Accuracy + macro-F1, class-level precision / recall, agreement vs disagreement cases, and review-needed alignment are all reported.</p>
+  <p class="fine">Chance-corrected reliability statistics are to be reported in the final manuscript. Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
+</section>
+
+<!-- ============ 34 · HEADLINE RESULTS ============ -->
+<section class="card" data-section="Results">
+  <div class="kicker">Results</div>
+  <span class="pill">Preliminary — validation ongoing</span>
+  <h2>Headline results: sentiment, direction, informativeness</h2>
+  <div class="rule"></div>
+  <table class="data">
+    <tr><th>Method</th><th class="num">Sentiment accuracy</th><th class="num">Macro-F1</th></tr>
+    <tr><td>LM dictionary</td><td class="num">37.3%</td><td class="num">0.320</td></tr>
+    <tr><td>FinBERT</td><td class="num">60.7%</td><td class="num">0.529</td></tr>
+    <tr><td>LM–FinBERT ensemble</td><td class="num">58.7%</td><td class="num">0.384</td></tr>
+    <tr class="hl"><td>ADAM (current)</td><td class="num">82.7%</td><td class="num">0.745</td></tr>
+  </table>
+  <p>ADAM also separates the other constructs: economic direction <strong>83.3%</strong> accuracy (macro-F1 0.689); disclosure informativeness <strong>71.4%</strong> (0.607) — the hardest of the three.</p>
+  <p class="fine">300-paragraph human reference set. Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
+</section>
+
+<!-- ============ 35 · DISAGREEMENT + ABLATION ============ -->
+<section class="card" data-section="Results">
+  <div class="kicker">Results</div>
+  <span class="pill">Preliminary — validation ongoing</span>
+  <h2>Where disagreement lives — and does the architecture matter?</h2>
+  <div class="rule"></div>
+  <div class="callout navy"><p><strong>The disagreement headline:</strong> LM and FinBERT disagree on <strong>162 of 300 paragraphs (54%)</strong>. There, ADAM reaches <strong>76.5%</strong> accuracy (macro-F1 0.703), vs FinBERT 68.5%, ensemble 64.8%, LM 25.3%. Where <em>both</em> base models were wrong (77 paragraphs), ADAM is correct on <strong>89.6%</strong>.</p></div>
+  <p><strong>The ablation</strong> (same adjudicator, progressively more evidence) — informativeness macro-F1:</p>
+  <table class="data">
+    <tr><th>Configuration</th><th class="num">Informativeness F1</th></tr>
+    <tr><td>Judge-only (paragraph only)</td><td class="num">0.453</td></tr>
+    <tr><td>Base evidence (+ LM + FinBERT)</td><td class="num">0.469</td></tr>
+    <tr class="hl"><td>Full ADAM (+ Context &amp; Quality)</td><td class="num">0.607</td></tr>
+  </table>
+  <p>Gains Δ <strong>+.138</strong> vs Base and <strong>+.154</strong> vs Judge-only — both statistically significant. The honest boundary: Judge-only already reaches <strong>82.0%</strong> on sentiment and <strong>84.0%</strong> on direction (slightly above Full ADAM's 83.3%) — <strong>the proven architectural gain is informativeness</strong>, where the construct depends on information outside the paragraph.</p>
+  <p class="fine">Every number on this card is preliminary. Research still ongoing — confirmatory validation to come in the final paper.</p>
+</section>
+
+<!-- ============ 36 · DECISION SUPPORT ============ -->
+<section class="card" data-section="Results">
+  <div class="kicker">Results</div>
+  <span class="pill">Preliminary — validation ongoing</span>
+  <h2>What does it buy a decision maker?</h2>
+  <div class="rule"></div>
+  <p><strong>Prioritise attention:</strong> ADAM's High-informativeness flag — <strong>81.0% precision / 69.9% recall</strong> — vs a simple FinBERT-negative rule at <strong>19.5%</strong> precision for High informativeness (the proxy trap).</p>
+  <p><strong>Route uncertainty:</strong> confidence below 0.80 sends <strong>56%</strong> of paragraphs to review, captures <strong>92.3%</strong> of ADAM's sentiment errors, and accuracy on the automated remainder rises to <strong>97.0%</strong>.</p>
+  <p><strong>Trace the reasoning:</strong> a complete evidence record for all 300 cases — paragraph → agents → context → rationale.</p>
+  <div class="callout"><p>The DSS value is <strong>selective attention + traceability + review routing</strong> — not simply a higher sentiment score.</p></div>
+  <p class="fine">Every number on this card is preliminary. Research still ongoing — confirmatory validation, confidence intervals, and paired significance tests to come in the final paper.</p>
+</section>
+
+<!-- ============ 37 · THREE TAKEAWAYS ============ -->
+<section class="card" data-section="Finish">
+  <div class="kicker">Takeaways</div>
+  <h2>Three takeaways</h2>
+  <div class="rule"></div>
+  <ol>
+    <li><strong>Different models see different evidence.</strong><br>Do not collapse that evidence too early.</li>
+    <li><strong>Disagreement can be diagnostically useful.</strong><br>Ask why methods diverge — and whether the conflict is resolvable.</li>
+    <li><strong>Decision support is more than accuracy.</strong><br>Traceability, uncertainty, context, and human attention are part of the output.</li>
+  </ol>
+  <div class="callout"><p>Close with the design insight — not the accuracy number.</p></div>
+</section>
+
+<!-- ============ 38 · WHAT'S NEXT + QUESTIONS ============ -->
+<section class="card" data-section="Finish">
+  <div class="kicker">Finish · What's next</div>
+  <h2>What happens next — and questions</h2>
+  <div class="rule"></div>
+  <p><strong>Next steps:</strong> finalise the Context &amp; Quality Agent operationalisation, confirmatory validation, disagreement analysis, and architecture ablations.</p>
+  <p>The design logic generalises beyond SEC filings — anywhere multiple analytical methods read complex narratives differently: regulatory, legal, clinical, cybersecurity, or operational text.</p>
+  <div class="callout navy">
+    <p><strong>Go deeper:</strong></p>
+    <p>Full 5-episode micro-learning site:<br><a href="https://mindsyourai.github.io/financial-disclosure-intelligence/">mindsyourai.github.io/financial-disclosure-intelligence/</a></p>
+    <p>Basics companion (8 flip cards + lightning quiz):<br><a href="https://mindsyourai.github.io/financial-disclosure-basics/">mindsyourai.github.io/financial-disclosure-basics/</a></p>
+    <p>Lecture PDF (all 5 episodes in full):<br><a href="https://mindsyourai.github.io/financial-disclosure-intelligence/financial-disclosure-intelligence-lecture.pdf">financial-disclosure-intelligence-lecture.pdf</a></p>
+  </div>
+  <h3>Questions?</h3>
+  <p>Dr. Kazim Topuz · <strong>Kazim-Topuz@utulsa.edu</strong> · The University of Tulsa</p>
+</section>
+
+</main>
+
+<div class="notes" id="notes" role="note" aria-live="polite"></div>
+
+<footer class="controls">
+  <button type="button" class="btn" id="btnPrev">‹ Prev</button>
+  <button type="button" class="btn small" id="btnNotes" aria-pressed="false">Presenter notes</button>
+  <button type="button" class="btn small" id="btnFull">Fullscreen</button>
+  <button type="button" class="btn" id="btnNext">Next ›</button>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var cards = Array.prototype.slice.call(document.querySelectorAll(".card"));
+var TOTAL = cards.length;
+var cur = 0;
+var counter = document.getElementById("counter");
+var progbar = document.getElementById("progbar");
+var seclabel = document.getElementById("seclabel");
+var notesEl = document.getElementById("notes");
+
+/* Presenter notes: one per section-opener card, plus the data card (card 7)
+   carries the one-line 175,779 reconciliation so it can be answered live. */
+var NOTES = {
+  1: "<b>Card 1 — Title.</b> Open with the problem, not the technology: annual reports contain valuable information, but they are long, repetitive, legally conditioned, and difficult to interpret consistently.",
+  2: "<b>Card 2 — Authors.</b> Kazim presents. Keep introductions to one line each; the talk is about the decision problem, not the team.",
+  3: "<b>Card 3 — The research premise.</b> The decision problem first: finding what matters inside a 10-K. Volume, repetition, and interpretive difficulty — tone, economics, and informativeness are not the same construct.",
+  7: "<b>Card 7 — Study data (reconciliation).</b> If asked: 143,372 focal paragraphs (2016–2025) + 32,407 historical context (2014–2015) = 175,779 paragraphs in total (≈176k). MK decided the deck uses 143,372 focal with no per-item split — do not quote a per-item split of the focal set.",
+  9: "<b>Card 9 — The 10-K.</b> Keep this section short — three cards, a bridge, not a lecture. The 10-K is long because it has to be; that length is exactly the problem ADAM attacks.",
+  12: "<b>Card 12 — LM.</b> Spend the most time here. Computers can't read — they count. The 50-word example (card 16) is the moment to slow down and let the room count along.",
+  20: "<b>Card 20 — FinBERT.</b> FinBERT reads the sentence, not the words. The 0.62 example (card 22) is the pivot: a clear label can still carry a low confidence.",
+  26: "<b>Card 26 — ADAM.</b> Agentic = specialised roles + structured evidence + explicit coordination — not “an LLM does everything”, and not a vote.",
+  33: "<b>Card 33 — Results.</b> Start with the humans: reviewers agreed unanimously only 21% / 25% / 32% of the time. Every number from here on is preliminary — say the label out loud.",
+  37: "<b>Card 37 — Takeaways.</b> Close with the design insight, not the accuracy number. Then questions."
+};
+var SECTION_OPENER = {"Title":1,"Authors":2,"The research premise":3,"Study data":7,"The 10-K":9,"LM Dictionary":12,"FinBERT":20,"ADAM":26,"Results":33,"Finish":37};
+
+function show(i){
+  if(i < 0) i = 0;
+  if(i > TOTAL-1) i = TOTAL-1;
+  cur = i;
+  cards.forEach(function(c, idx){ c.classList.toggle("active", idx === cur); });
+  counter.textContent = "Card " + (cur+1) + " of " + TOTAL;
+  progbar.style.width = (((cur+1)/TOTAL)*100).toFixed(1) + "%";
+  var sec = cards[cur].getAttribute("data-section");
+  seclabel.textContent = sec;
+  var note = NOTES[cur+1] || NOTES[SECTION_OPENER[sec]] || "";
+  notesEl.innerHTML = note;
+  document.getElementById("btnPrev").disabled = (cur === 0);
+  document.getElementById("btnNext").disabled = (cur === TOTAL-1);
+}
+function next(){ show(cur+1); }
+function prev(){ show(cur-1); }
+document.getElementById("btnNext").addEventListener("click", next);
+document.getElementById("btnPrev").addEventListener("click", prev);
+document.getElementById("zoneNext").addEventListener("click", next);
+document.getElementById("zonePrev").addEventListener("click", prev);
+
+document.getElementById("btnNotes").addEventListener("click", function(){
+  var on = document.body.classList.toggle("notes-on");
+  this.setAttribute("aria-pressed", on ? "true" : "false");
+});
+document.getElementById("btnFull").addEventListener("click", function(){
+  if(document.fullscreenElement){ document.exitFullscreen(); }
+  else if(document.documentElement.requestFullscreen){ document.documentElement.requestFullscreen(); }
+});
+
+document.addEventListener("keydown", function(e){
+  var t = e.target;
+  if(t && (t.tagName === "INPUT" || t.tagName === "SELECT" || t.tagName === "TEXTAREA")) return;
+  if(t && t.tagName === "BUTTON" && (e.key === " " || e.key === "Enter")) return;
+  if(e.key === "ArrowRight" || e.key === " " || e.key === "PageDown"){ e.preventDefault(); next(); }
+  else if(e.key === "ArrowLeft" || e.key === "PageUp"){ e.preventDefault(); prev(); }
+  else if(e.key === "Home"){ e.preventDefault(); show(0); }
+  else if(e.key === "End"){ e.preventDefault(); show(TOTAL-1); }
+});
+
+/* Swipe: ignore touches that start on interactive controls. */
+var sx = null, sy = null;
+document.getElementById("stage").addEventListener("touchstart", function(e){
+  if(e.target.closest("button,input,select,a,.lmw,.fb-row,.bin,.sort-item")) return;
+  sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+}, {passive:true});
+document.getElementById("stage").addEventListener("touchend", function(e){
+  if(sx === null) return;
+  var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+  sx = null; sy = null;
+  if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)){ if(dx < 0) next(); else prev(); }
+}, {passive:true});
+
+/* ---------- Quiz / reveal pattern (card 32) ---------- */
+document.querySelectorAll(".quiz").forEach(function(quiz){
+  var reveal = document.getElementById(quiz.id + "-reveal");
+  quiz.querySelectorAll(".opt").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      if(btn.disabled) return;
+      quiz.querySelectorAll(".opt").forEach(function(b){
+        b.disabled = true;
+        if(b.getAttribute("data-correct") === "true") b.classList.add("correct");
+        else if(b === btn) b.classList.add("wrong");
+      });
+      if(reveal) reveal.classList.add("show");
+    });
+  });
+});
+
+/* ---------- LM word-counter (card 16) ---------- */
+var LM_WORDS = [
+  ["Strong","pos"],["demand","none"],["helped","none"],["sales","none"],["improve","pos"],
+  ["this","none"],["year,","none"],["and","none"],["efficient","pos"],["operations","none"],
+  ["delivered","none"],["a","none"],["clear","none"],["benefit","pos"],["to","none"],
+  ["shareholders.","none"],["Management","none"],["expects","none"],["continued","none"],["success","pos"],
+  ["from","none"],["new","none"],["products.","none"],["However,","none"],["revenue","none"],
+  ["faced","none"],["a","none"],["decline","neg"],["in","none"],["one","none"],
+  ["segment,","none"],["a","none"],["loss","neg"],["on","none"],["discontinued","none"],
+  ["operations,","none"],["and","none"],["higher","none"],["risk","neg"],["from","none"],
+  ["volatility,","neg"],["leaving","none"],["the","none"],["outlook","none"],["weak","neg"],
+  ["and","none"],["a","none"],["burden","neg"],["on","none"],["margins.","none"]
+];
+document.querySelectorAll(".lm-game").forEach(function(game){
+  var box = game.querySelector(".lm-words");
+  LM_WORDS.forEach(function(w){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "lmw"; b.textContent = w[0];
+    b.setAttribute("data-cls", w[1]);
+    box.appendChild(b); box.appendChild(document.createTextNode(" "));
+  });
+  var score = game.querySelector(".scorebox");
+  var hint = game.querySelector(".hintline");
+  function update(){
+    var pos = 0, neg = 0, wrong = 0;
+    game.querySelectorAll(".lmw").forEach(function(c){
+      if(c.classList.contains("sel-pos")) pos++;
+      else if(c.classList.contains("sel-neg")) neg++;
+      else if(c.classList.contains("sel-none")) wrong++;
+    });
+    var net = (pos - neg) / 50;
+    var per1k = Math.round((pos - neg) / 50 * 1000);
+    score.innerHTML = "Positive: <b>" + pos + "</b> · Negative: <b>" + neg + "</b><br>" +
+      "%Pos: <b>" + (pos/50*100).toFixed(1) + "%</b> · %Neg: <b>" + (neg/50*100).toFixed(1) + "%</b><br>" +
+      "Net LM tone: <b>" + (net > 0 ? "+" : "") + net.toFixed(2) + "</b> · Net per 1,000 words: <b>" + (per1k > 0 ? "+" : "") + per1k + "</b>";
+    if(pos === 5 && neg === 6 && wrong === 0) hint.textContent = "Exactly right: 5 positive, 6 negative — net LM tone −0.02 (−2.0%), −20 per 1,000 words.";
+    else if(wrong > 0) hint.textContent = "Careful: the struck-through words are on neither LM list — a dictionary would not count them.";
+    else hint.textContent = "Total words: 50. Tap the words you think are on an LM list, then reveal the answer.";
+  }
+  box.addEventListener("click", function(e){
+    var b = e.target.closest(".lmw"); if(!b) return;
+    if(b.classList.contains("sel-pos") || b.classList.contains("sel-neg") || b.classList.contains("sel-none")){
+      b.classList.remove("sel-pos","sel-neg","sel-none");
+    } else {
+      var cls = b.getAttribute("data-cls");
+      if(cls === "pos") b.classList.add("sel-pos");
+      else if(cls === "neg") b.classList.add("sel-neg");
+      else b.classList.add("sel-none");
+    }
+    update();
+  });
+  game.querySelector(".lm-reveal").addEventListener("click", function(){
+    game.querySelectorAll(".lmw").forEach(function(c){
+      c.classList.remove("sel-pos","sel-neg","sel-none");
+      var cls = c.getAttribute("data-cls");
+      if(cls === "pos") c.classList.add("sel-pos");
+      else if(cls === "neg") c.classList.add("sel-neg");
+    });
+    update();
+  });
+  game.querySelector(".lm-reset").addEventListener("click", function(){
+    game.querySelectorAll(".lmw").forEach(function(c){ c.classList.remove("sel-pos","sel-neg","sel-none"); });
+    update();
+  });
+  update();
+});
+
+show(0);
+})();
+</script>
+</body>
+</html>
